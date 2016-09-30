@@ -1,0 +1,25 @@
+html    {
+    background-image: url("http://img.wallpaperfolder.com/f/66BB74C77D22/wip-grid-tron-style-bioderp.jpg");
+    background-size: 100%;
+}
+body    {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    color: white
+}
+h1  {
+    position: absolute;
+    width: 370px;
+    top: -100px;
+    left: -33%;
+    color: red;
+    text-decoration: underline;
+}
+#passWord   {
+    font-style: italic;
+}
+#size{
+    font-style: oblique;
+    text-decoration: underline;
+}
