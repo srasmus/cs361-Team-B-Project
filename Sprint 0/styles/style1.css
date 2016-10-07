@@ -1,0 +1,30 @@
+html    {
+    background-image: url("http://img.wallpaperfolder.com/f/66BB74C77D22/wip-grid-tron-style-bioderp.jpg");
+    background-size: 100%;
+}
+body    {
+        color: gold;
+}
+header  {
+    font-family: "Georgia", Times, serif;
+    position: absolute;
+    top: 9%;
+    left: 15%;
+    color: gold;    
+}
+#questions   {
+    font-style: italic;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+}
+#uniqueQuestions    {
+    position: absolute;
+    top: 200%;
+    left: -20%
+}
+#answers    {
+    position: absolute;
+    top: 450%;
+    left: 15%;
+}

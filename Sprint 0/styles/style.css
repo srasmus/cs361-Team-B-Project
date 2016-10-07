@@ -6,15 +6,15 @@ body    {
     position: absolute;
     top: 15%;
     left: 40%;
-    color: white
+    color: gold;
 }
-h1  {
+header  {
     position: absolute;
-    width: 370px;
+    width: 570px;
     top: -100px;
-    left: -33%;
-    color: red;
-    text-decoration: underline;
+    left: -29%;
+    color: gold;
+    font-family: "Georgia", Times, serif;
 }
 #passWord   {
     font-style: italic;
@@ -22,4 +22,9 @@ h1  {
 #size{
     font-style: oblique;
     text-decoration: underline;
+}
+#login{
+    position: absolute;
+    cursor: pointer;
+    left: 31%;
 }
