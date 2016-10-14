@@ -1,0 +1,19 @@
+html    {
+    background-color: rgb(55,65,66);
+    background-size: 100%;
+}
+body    {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    color: black;
+}
+header  {
+    position: absolute;
+    width: 1300px;
+    top: -100px;
+    left: -520px;
+    color: black;
+    background-color: gold;
+    font-family: "Georgia", Times, serif;
+}
