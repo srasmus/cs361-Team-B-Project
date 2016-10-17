@@ -35,6 +35,20 @@ body {
     color: rgb(225, 196, 92);
 }
 
+#mail {
+    margin: 0px 156px;
+    position: absolute;
+    right: 0px;
+    height: 35px;
+    width: 90px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: rgb(225, 196, 92);
+}
+
 #heading {
     position: relative;
     top: 100px;
@@ -76,6 +90,19 @@ body {
     font-family: "Montserrat";
     font-size: 13px;
     color: rgb(225, 196, 92);
+}
+
+#unique {
+    position:relative;
+    bottom: 920px;
+    height: 50px;
+    width: 400px;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 12px;
+    font-family: "Montserrat";
+    font-size: 15px;
+    color: rgb(38, 38, 38);
 }
 
 #answers {
