@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: "Open Sans";
-    color: rgb(38, 38, 38);
+    color: rgb(235, 235, 235);
 }
 
 #taskbar {
@@ -19,6 +19,14 @@ body {
     width: 100%;
     background-color: rgb(235, 235, 235);
     border: 2px solid rgb(235, 235, 235);
+}
+
+header {
+    margin: 0px 65px;
+    float: left;
+    color: rgb(38, 38, 38);
+    font-family: "Montserrat";
+    font-size: 29px;
 }
 
 #login {
@@ -63,6 +71,7 @@ body {
     background-color: rgb(235, 235, 235);
     border: 2px solid rgb(19, 19, 19);
     border-radius: 12px;
+    text-align: center;
     color: rgb(38, 38, 38);
 }
 
@@ -76,7 +85,7 @@ body {
     border-bottom-left-radius: 5px;
     font-family: "Montserrat";
     font-size: 15px;
-    color: black;
+    color: rgb(38, 38, 38);
 }
 
 #questionButton {
@@ -120,12 +129,14 @@ body {
 }
 
 .questionRepeat {
-    display: flex;justify-content: center;
+    display: flex;
+    justify-content: center;
     flex-direction: column;
     height: 35px;
     float:left;
     font-family: "Droid Sans";
     font-size: 22px;
+    color: rgb(38, 38, 38);
 }
 
 .edit {
