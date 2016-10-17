@@ -1,30 +1,54 @@
-html    {
-    background-image: url("http://img.wallpaperfolder.com/f/66BB74C77D22/wip-grid-tron-style-bioderp.jpg");
-    background-size: 100%;
+html {
+    background-color: rgb(38, 38, 38);
+    height: 100%;
 }
-body    {
-    position: absolute;
-    top: 15%;
-    left: 40%;
-    color: gold;
+
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Droid Sans";
+    font-weight: bold;
 }
-header  {
-    position: absolute;
-    width: 570px;
-    top: -100px;
-    left: -29%;
-    color: gold;
-    font-family: "Georgia", Times, serif;
+
+#heading {
+    position: relative;
+    bottom: 86px;
+    color: rgb(225, 196, 92);
 }
-#passWord   {
-    font-style: italic;
+
+#loginForm {
+    padding: 20px 40px;
+    position: relative;
+    bottom: 100px;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 12px;
+    color: rgb(38, 38, 38);
 }
-#size{
-    font-style: oblique;
-    text-decoration: underline;
+
+#loginButton {
+    height: 40px;
+    width: 284px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: rgb(225, 196, 92);
 }
-#login{
-    position: absolute;
-    cursor: pointer;
-    left: 31%;
+
+.textField {
+    margin: 6px 0px;
+    height: 20px;
+    width: 268px;
+    padding: 7px;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 15px;
 }
