@@ -41,11 +41,23 @@
         </div>
         <div id="reply">
             <div id="replySubjectBar">
-                <input id="replySubject" type="text" value="Subject:">
-                <input id="send" type="button" value="Send"/>
+                <div class="horiz-content">
+                    <h2>Subject:</h2>
+                    <input id="replySubject" type="text" value="Subject:">
+                </div>
+                <div class="horiz-content">
+                    <h2 id="to-label">To:</h2>
+                    <select id="dropdown" name="toggle">
+                        <option value="teacher1">Jayson "The Rock" Rock</option>
+                        <option value="teacher2">John Boyland</option>
+                        <option value="teacher3">Robert Sorensen</option>
+                        <option value="teacher4">Ethan Munson</option>
+                    </select>
+                </div>
             </div>
             <div id="responseBox">
-                <textarea id="response" value="Enter your message"/>
+                <textarea id="response" value=""></textarea>
+                <input id="send" type="button" value="Send"/>
             </div>
         </div>
     </body>

@@ -41,19 +41,24 @@
         </div>
         <div id="reply">
             <div id="replySubjectBar">
+                <div>
+                    <h2>Subject:</h2>
                 <input id="replySubject" type="text" value="Subject:">
-                  <h4>To:</h4>
-                <select id="dropdown" name="toggle">
-                    <option value="student1">Student 1</option>
-                    <option value="student2">Student 2</option>
-                    <option value="student3">Student 3</option>
-                    <option value="student4">Student 4</option>
-                </select>
-                <input id="send" type="button" value="Send"/>
+                </div>
+                <div>
+                    <h2 id="to-label">To:</h2>
+                    <select id="dropdown" name="toggle">
+                        <option value="student1">Student 1</option>
+                        <option value="student2">Student 2</option>
+                        <option value="student3">Student 3</option>
+                        <option value="student4">Student 4</option>
+                    </select>
+                </div>
             </div>
             
             <div id="responseBox">
-                <textarea id="response" value="Enter your message"/>
+                <textarea id="response" value="Enter your message"></textarea>
+                <input id="send" type="button" value="Send"/>
             </div>
         </div>
     </body>
