@@ -1,2 +1,0 @@
-As a student, I want to view my teacher's FAQ so that I can get the information they want me to know.
-As a student, I want to submit unique questions to my teacher so that I can get information I want.
