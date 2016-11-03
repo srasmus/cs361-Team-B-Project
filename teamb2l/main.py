@@ -16,6 +16,13 @@
 #
 import webapp2
 
+studentMasterl = []
+teacherMasterl = []
+classMasterl = []
+#Master lists of all the student accounts, teacher accounts, and classes in the program.
+#The classes themselves update them
+
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
