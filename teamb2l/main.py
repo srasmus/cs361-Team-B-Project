@@ -20,7 +20,6 @@ import os
 import urllib
 import jinja2
 
-myList=[]
 title = "Database Maintenance"
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
@@ -37,7 +36,7 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_vars))
 #These values will be appended to objects in lists instead of simple strings
         teacher = self.request.get("teachers")
-        student = self.request.get("students)
+        student = self.request.get("students")
         
         classID = self.request.get("classID")
         if teacher != '':
