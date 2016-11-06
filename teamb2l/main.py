@@ -21,8 +21,11 @@ import urllib
 import jinja2
 
 myList=[]
-title = "Parking Tickets"
-template_vars = {'title':title, 'teachers':[], 'students':[], 'classID':[], 'length':1}
+title = "Database Maintenance"
+
+#Master lists of all the student accounts, teacher accounts, and classes in the program.
+#The classes themselves update them
+template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'classMaster1':[], 'length':1}
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
@@ -32,31 +35,33 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/index.html')
         self.response.write(template.render(template_vars))
+#These values will be appended to objects in lists instead of simple strings
         teacher = self.request.get("teachers")
-        student = self.request.get("students")
+        student = self.request.get("students)
         
         classID = self.request.get("classID")
         if teacher != '':
-            template_vars['teachers'].append(teacher)
+            template_vars['teacherMaster1'].append(teacher)
         if student != '':
-            template_vars['students'].append(student)
+            template_vars['studentMaster1'].append(student)
         if classID != '':
-            template_vars['classID'].append(classID)
+            template_vars['classMaster1'].append(classID)
 
 class Lister(webapp2.RequestHandler):
     def post(self):
-             
+#These values will be appended to objects in lists instead of simple strings            
         teacher = self.request.get("teachers")
         student = self.request.get("students")        
         classID = self.request.get("classID")
         
         if teacher != '':
-            template_vars['teachers'].append(teacher)
+            template_vars['teacherMaster1'].append(teacher)
         if student != '':
-            template_vars['students'].append(student)
+            template_vars['studentMaster1'].append(student)
         if classID != '':
-            template_vars['classID'].append(classID)
-        
+            template_vars['classMaster1'].append(classID)
+#Remove feature must still be implemented and added too
+       
         template_vars['length'] = template_vars['length'] + 1
         template = JINJA_ENVIRONMENT.get_template('/list.html')
         self.response.write(template.render(template_vars))    
