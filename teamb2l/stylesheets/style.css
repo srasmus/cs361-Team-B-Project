@@ -1,0 +1,19 @@
+h1  {
+	color: red;
+    text-align: center;
+}
+body    {
+    text-align: center;
+}
+#mine   {
+    color: white;
+    position: absolute;
+    top: 22%;
+    left: 40%
+}
+#evens  {
+    text-align: center;
+}
+#odds   {
+    text-align: center;
+}

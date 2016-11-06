@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+##!/usr/bin/env python
 #
 # Copyright 2007 Google Inc.
 #
@@ -15,18 +15,53 @@
 # limitations under the License.
 #
 import webapp2
+import random
+import os
+import urllib
+import jinja2
 
-studentMasterl = []
-teacherMasterl = []
-classMasterl = []
-#Master lists of all the student accounts, teacher accounts, and classes in the program.
-#The classes themselves update them
-
+myList=[]
+title = "Parking Tickets"
+template_vars = {'title':title, 'teachers':[], 'students':[], 'classID':[], 'length':1}
+JINJA_ENVIRONMENT = jinja2.Environment(
+loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+extensions=['jinja2.ext.autoescape'],
+autoescape=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        template = JINJA_ENVIRONMENT.get_template('/index.html')
+        self.response.write(template.render(template_vars))
+        teacher = self.request.get("teachers")
+        student = self.request.get("students")
+        
+        classID = self.request.get("classID")
+        if teacher != '':
+            template_vars['teachers'].append(teacher)
+        if student != '':
+            template_vars['students'].append(student)
+        if classID != '':
+            template_vars['classID'].append(classID)
 
+class Lister(webapp2.RequestHandler):
+    def post(self):
+             
+        teacher = self.request.get("teachers")
+        student = self.request.get("students")        
+        classID = self.request.get("classID")
+        
+        if teacher != '':
+            template_vars['teachers'].append(teacher)
+        if student != '':
+            template_vars['students'].append(student)
+        if classID != '':
+            template_vars['classID'].append(classID)
+        
+        template_vars['length'] = template_vars['length'] + 1
+        template = JINJA_ENVIRONMENT.get_template('/list.html')
+        self.response.write(template.render(template_vars))    
+                         
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ("/list.html", Lister)
 ], debug=True)

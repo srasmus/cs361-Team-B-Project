@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ title }}</title>
+<link href="/stylesheets/style.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+{% block content %}
+<h1>Database Maintenance</h1>
+{% endblock %}
+<form action = "/list.html" method="post">
+Teacher Email: <input type="email" id="teachers" name="teachers"><br>
+Student Email: <input type="email" id="students" name="students"><br>
+Class ID: <input type="text" id="classID" name="classID"><br>
+<br>
+<input type="submit" value="Add Item(s)">
+</form>
+</body>
+</html>
