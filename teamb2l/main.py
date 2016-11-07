@@ -19,6 +19,8 @@ import random
 import os
 import urllib
 import jinja2
+import logging
+from Classes.TeacherAcct import TeacherAcct
 
 title = "Database Maintenance"
 
@@ -63,9 +65,24 @@ class Lister(webapp2.RequestHandler):
        
         template_vars['length'] = template_vars['length'] + 1
         template = JINJA_ENVIRONMENT.get_template('/list.html')
-        self.response.write(template.render(template_vars))    
+        self.response.write(template.render(template_vars))
+
+class AdminHandler(webapp2.RequestHandler):
+    def get(self):
+        admin = TeacherAcct("admin", "admin", "admin@test.test")
+        admin.admin = True
+        if len(TeacherAcct.teachers) == 0:
+            for i in range(0, 10):
+                admin.addTeacher(TeacherAcct("Teacher", str(i), "Teacher" + str(i) + "@test.test"))
+        teachers = TeacherAcct.teachers
+        teacherList = JINJA_ENVIRONMENT.get_template('/teachers/index.html')
+        self.response.write(teacherList.render({
+            'teachers': teachers,
+            'count' : len(teachers)
+        }))
                          
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ("/list.html", Lister)
+    ("/list.html", Lister),
+    ('/teachers', AdminHandler)
 ], debug=True)

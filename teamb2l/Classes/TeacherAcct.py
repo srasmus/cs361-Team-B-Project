@@ -1,23 +1,23 @@
-from teamb2l.Classes.Class import Class
-from teamb2l import main
+from Class import Class
 
 class TeacherAcct():
+    teachers = []
 
     #Constructor initializes an empty list of classes an instructor is teaching,
     #as well as add the account to the Master List.
     #Turns the first and last name into a Last, First naming convention
-    def __init__(self,firstName,lastName,email,):
+    def __init__(self,firstName,lastName,email):
         self.name = lastName+", "+firstName
         self.email = email
         self.classes = []
-        main.teacherMasterl.append(self)
+        self.admin = False
 
     #Creates a new Class, adds it to personal class list, and Master
     #Returns the newly created Class
     def createClass(self,name):
         tmp = Class(self,name)
         self.classes.append(tmp)
-        main.classMasterl.append(tmp)
+        Class.classes.append(tmp)
         return tmp
 
     #If the Class exists, it is removed from both lists, and the new teacher level class list is returned
@@ -25,7 +25,7 @@ class TeacherAcct():
     def deleteClass(self,clas):
         if self.classes.contains(clas):
             self.classes.remove(clas)
-            main.classMasterl.remove(clas)
+            Class.classes.remove(clas)
             return self.classes
         else:
             return None
@@ -48,5 +48,19 @@ class TeacherAcct():
         if self.classes.contains(clas):
             clas.unenroll(student)
             return clas.students
+        else:
+            return None
+
+    def addTeacher(self,teacher):
+        if self.admin:
+            # if ~TeacherAcct.teachers.contains(teacher):
+                TeacherAcct.teachers.append(teacher)
+        else:
+            return None
+
+    def removeTeacher(self, teacher):
+        if self.admin:
+            if TeacherAcct.teachers.contains(teacher):
+                TeacherAcct.teachers.remove(teacher)
         else:
             return None
