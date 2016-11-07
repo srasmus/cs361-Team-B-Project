@@ -7,6 +7,8 @@
 {% block content %}
 <h1>Database Maintenance</h1>
 {% endblock %}
+    
+{#I also envision this as enventually becoming a search engine for contacts or classes, right now it is just a bulk add item type of function#}
 <form action = "/list.html" method="post">
 Teacher Email: <input type="email" id="teachers" name="teachers"><br>
 Student Email: <input type="email" id="students" name="students"><br>
@@ -14,5 +16,13 @@ Class ID: <input type="text" id="classID" name="classID"><br>
 <br>
 <input type="submit" value="Add Item(s)">
 </form>
+    <br>
+{#These buttons will lead to the forms that could be used to create items from the opposite end, meaning teacher or administrator#}
+    
+  <a id="mybutton" href="/teacher.html" title="Link to Add Teacher Page">
+  <button>Add Teacher</button>
+ </a>
+    <button type="button">Add Student</button>
+    <button type="button">Add Class</button>
 </body>
 </html>
