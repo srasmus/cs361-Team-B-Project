@@ -1,15 +1,20 @@
-from teamb2l.Classes.Class import Class
-from teamb2l import main
 
-class StudentAcct():
+
+class Student(object):
 
     #Constructor initializes an empty list of classes a student is taking,
-    #as well as add the account to the Master List.
-    #Turns the first and last name into a Last, First naming convention
-    def __init__(self,firstName,lastName,email,):
-        self.name = lastName+", "+firstName
-        self.email = email
+    def __init__(self):
+        self.firstName = ""
+        self.lastName = ""
+        self.email = ""
         self.classes = []
-        main.studentMasterl.append(self)
+        self.isTA = False
 
- 
+    #Simply assigns a student with basic attributes and adds the class 
+    #the student is taking.
+    def makeStudent(self, firstName, lastName, email, classID):        
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.email = email;
+        self.classes.append(classID)
+        
