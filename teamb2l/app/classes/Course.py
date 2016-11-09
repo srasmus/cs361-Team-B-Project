@@ -1,5 +1,4 @@
 
-from teamb2l import main
 class Course():
     courses = []
     #Constructor initializes an empty dict of students enrolled in the class,
@@ -32,6 +31,6 @@ class Course():
     #If it does, the account is paired with the email string
     #Otherwise, the key has no value, and the method can be called again when the account is created
     def updateDict(self):
-        for i in main.courseMasterl:
+        for i in Course.courses:
             if self.students.contains(i.email):
                 self.students[i.email] = i

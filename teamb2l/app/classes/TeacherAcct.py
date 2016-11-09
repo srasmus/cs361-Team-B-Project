@@ -1,4 +1,4 @@
-from teamb2l.app.classes.Course import Course
+from Course import Course
 
 class TeacherAcct():
     teachers = []

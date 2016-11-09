@@ -20,7 +20,10 @@ import os
 import urllib
 import jinja2
 import logging
-from Classes.TeacherAcct import TeacherAcct
+from app.classes.TeacherAcct import TeacherAcct
+from app.handlers.MainHandler import MainHandler
+from app.handlers.AdminHandler import AdminHandler
+from app.handlers.Lister import Lister
 
 title = "Database Maintenance"
 
