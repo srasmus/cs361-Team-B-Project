@@ -1,5 +1,3 @@
-from teamb2l.Classes.Class import Class
-from teamb2l import main
 
 class StudentAcct():
 
@@ -10,6 +8,4 @@ class StudentAcct():
         self.name = lastName+", "+firstName
         self.email = email
         self.classes = []
-        main.studentMasterl.append(self)
-
  

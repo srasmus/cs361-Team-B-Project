@@ -31,56 +31,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
-
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/index.html')
-        self.response.write(template.render(template_vars))
-#These values will be appended to objects in lists instead of simple strings
-        teacher = self.request.get("teachers")
-        student = self.request.get("students")
-        
-        classID = self.request.get("classID")
-        if teacher != '':
-            template_vars['teacherMaster1'].append(teacher)
-        if student != '':
-            template_vars['studentMaster1'].append(student)
-        if classID != '':
-            template_vars['classMaster1'].append(classID)
-
-class Lister(webapp2.RequestHandler):
-    def post(self):
-#These values will be appended to objects in lists instead of simple strings            
-        teacher = self.request.get("teachers")
-        student = self.request.get("students")        
-        classID = self.request.get("classID")
-        
-        if teacher != '':
-            template_vars['teacherMaster1'].append(teacher)
-        if student != '':
-            template_vars['studentMaster1'].append(student)
-        if classID != '':
-            template_vars['classMaster1'].append(classID)
-#Remove feature must still be implemented and added too
-       
-        template_vars['length'] = template_vars['length'] + 1
-        template = JINJA_ENVIRONMENT.get_template('/list.html')
-        self.response.write(template.render(template_vars))
-
-class AdminHandler(webapp2.RequestHandler):
-    def get(self):
-        admin = TeacherAcct("admin", "admin", "admin@test.test")
-        admin.admin = True
-        if len(TeacherAcct.teachers) == 0:
-            for i in range(0, 10):
-                admin.addTeacher(TeacherAcct("Teacher", str(i), "Teacher" + str(i) + "@test.test"))
-        teachers = TeacherAcct.teachers
-        teacherList = JINJA_ENVIRONMENT.get_template('/teachers/index.html')
-        self.response.write(teacherList.render({
-            'teachers': teachers,
-            'count' : len(teachers)
-        }))
-                         
+           
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ("/list.html", Lister),
