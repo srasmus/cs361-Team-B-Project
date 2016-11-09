@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Mail</title>
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Open+Sans">
+        <link rel="stylesheet" type="text/css" href="styles/Mail.css"/>        
+    </head>
+    <body>
+        <div id="taskbar">
+            <header>Mail</header>
+            <a href="Login.html">
+                <input id="login" type="button" value="Log out"/>
+            </a>
+            <a href="Teacher%20FAQs.html">
+                <input id="faqs" type="button" value="FAQs"/>
+            </a>
+        </div>
+        <div id="inbox">
+            <h1 id="inboxHeading">Inbox</h1>
+            <a href="Teacher%20Compose.html">
+                <input class="mail" id="compose" type="button"                                  value="Compose new mail"/>
+            </a>
+            <a href="Dummy%20Mail%20Teacher.html">
+                <input class="mail" type="button" value="Mail 1"/>
+            </a>
+            <a href="Dummy%20Mail%20Teacher.html">
+                <input class="mail" type="button" value="Mail 2"/>
+            </a>
+            <a href="Dummy%20Mail%20Teacher.html">
+                <input class="mail" type="button" value="Mail 3"/>
+            </a>
+            <a href="Dummy%20Mail%20Teacher.html">
+                <input class="mail" type="button" value="Mail 4"/>
+            </a>
+        </div>
+        <div id="reply">
+            <div id="replySubjectBar">
+                <input id="replySubject" type="text" value="Subject:">
+                  <h4>To:</h4>
+                <select id="dropdown" name="toggle">
+                    <option value="student1">Student 1</option>
+                    <option value="student2">Student 2</option>
+                    <option value="student3">Student 3</option>
+                    <option value="student4">Student 4</option>
+                </select>
+                <input id="send" type="button" value="Send"/>
+            </div>
+            
+            <div id="responseBox">
+                <textarea id="response" value="Enter your message"/>
+            </div>
+        </div>
+    </body>
+</html>

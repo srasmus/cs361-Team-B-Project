@@ -1,0 +1,54 @@
+html {
+    background-color: rgb(38, 38, 38);
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Droid Sans";
+    font-weight: bold;
+}
+
+#heading {
+    position: relative;
+    bottom: 86px;
+    color: rgb(225, 196, 92);
+}
+
+#loginForm {
+    padding: 20px 40px;
+    position: relative;
+    bottom: 100px;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 12px;
+    color: rgb(38, 38, 38);
+}
+
+#loginButton {
+    height: 40px;
+    width: 284px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: rgb(225, 196, 92);
+}
+
+.textField {
+    margin: 6px 0px;
+    height: 20px;
+    width: 268px;
+    padding: 7px;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 15px;
+}
