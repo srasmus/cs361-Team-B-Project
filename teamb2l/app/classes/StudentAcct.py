@@ -1,11 +1,24 @@
 
-class StudentAcct():
+
+class Student(object):
 
     #Constructor initializes an empty list of classes a student is taking,
-    #as well as add the account to the Master List.
-    #Turns the first and last name into a Last, First naming convention
-    def __init__(self,firstName,lastName,email,):
-        self.name = lastName+", "+firstName
-        self.email = email
+    def __init__(self):
+        self.firstName = ""
+        self.lastName = ""
+        self.email = ""
         self.classes = []
+<<<<<<< HEAD:teamb2l/app/classes/StudentAcct.py
  
+=======
+        self.isTA = False
+
+    #Simply assigns a student with basic attributes and adds the class 
+    #the student is taking.
+    def makeStudent(self, firstName, lastName, email, classID):        
+        self.firstName = firstName;
+        self.lastName = lastName;
+        self.email = email;
+        self.classes.append(classID)
+        
+>>>>>>> 99c03dde727f2ee0884af305de342bd7443b77ac:teamb2l/Classes/StudentAcct.py
