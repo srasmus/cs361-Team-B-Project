@@ -1,53 +1,53 @@
-from Class import Class
+from teamb2l.app.classes.Course import Course
 
 class TeacherAcct():
     teachers = []
 
-    #Constructor initializes an empty list of classes an instructor is teaching,
+    #Constructor initializes an empty list of courses an instructor is teaching,
     #as well as add the account to the Master List.
     #Turns the first and last name into a Last, First naming convention
     def __init__(self,firstName,lastName,email):
         self.name = lastName+", "+firstName
         self.email = email
-        self.classes = []
+        self.courses = []
         self.admin = False
 
-    #Creates a new Class, adds it to personal class list, and Master
-    #Returns the newly created Class
-    def createClass(self,name):
-        tmp = Class(self,name)
-        self.classes.append(tmp)
-        Class.classes.append(tmp)
+    #Creates a new Course, adds it to personal class list, and Master
+    #Returns the newly created Course
+    def createCourse(self,name):
+        tmp = Course(self,name)
+        self.courses.append(tmp)
+        Course.courses.append(tmp)
         return tmp
 
-    #If the Class exists, it is removed from both lists, and the new teacher level class list is returned
+    #If the Course exists, it is removed from both lists, and the new teacher level class list is returned
     #Otherwise, None is returned
-    def deleteClass(self,clas):
-        if self.classes.contains(clas):
-            self.classes.remove(clas)
-            Class.classes.remove(clas)
-            return self.classes
+    def deleteCourse(self,course):
+        if self.courses.contains(course):
+            self.courses.remove(course)
+            Course.courses.remove(course)
+            return self.courses
         else:
             return None
 
     #Takes a string of emails separated by commas ","
-    #If the Class exists, each student account with that email will be "enrolled" in the class
+    #If the Course exists, each student account with that email will be "enrolled" in the class
     #It returns a dictionary of students by (email string, StudentAcct) if students are succesfully enrolled
     #Otherwise, None
-    def addStudents(self,clas,students):
-        if self.classes.contains(clas):
-            clas.enroll(students)
-            return clas.students
+    def addStudents(self,course,students):
+        if self.courses.contains(course):
+            course.enroll(students)
+            return course.students
         else:
             return None
 
     #Takes the string of a student's email
-    #If the Class exists, the student is removed from that Class' student list and the updated list is returned
+    #If the Course exists, the student is removed from that Course' student list and the updated list is returned
     # Otherwise, None
-    def removeStudent(self,clas,student):
-        if self.classes.contains(clas):
-            clas.unenroll(student)
-            return clas.students
+    def removeStudent(self,course,student):
+        if self.courses.contains(course):
+            course.unenroll(student)
+            return course.students
         else:
             return None
 

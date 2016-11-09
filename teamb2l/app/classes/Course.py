@@ -1,7 +1,7 @@
-from StudentAcct import StudentAcct
 
-class Class():
-    classes = []
+from teamb2l import main
+class Course():
+    courses = []
     #Constructor initializes an empty dict of students enrolled in the class,
     #as well as add the class to the Master List.
     def __init__(self,teacher,name):
@@ -32,6 +32,6 @@ class Class():
     #If it does, the account is paired with the email string
     #Otherwise, the key has no value, and the method can be called again when the account is created
     def updateDict(self):
-        for i in StudentAcct.students:
+        for i in main.courseMasterl:
             if self.students.contains(i.email):
                 self.students[i.email] = i

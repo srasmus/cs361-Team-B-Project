@@ -26,7 +26,7 @@ title = "Database Maintenance"
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
-template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'classMaster1':[], 'length':1}
+template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'courseMaster1':[], 'length':1}
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
