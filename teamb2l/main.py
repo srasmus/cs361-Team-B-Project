@@ -25,7 +25,9 @@ from app.handlers.MainHandler import MainHandler
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.Lister import Lister
 
-title = "Database Maintenance"
+from mocs.login import Login
+
+title = "Team B2L"
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
@@ -36,7 +38,8 @@ extensions=['jinja2.ext.autoescape'],
 autoescape=True)
            
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ("/list.html", Lister),
-    ('/teachers', AdminHandler)
+    ('/', Login),
+    #('/', MainHandler),
+    #("/list.html", Lister),
+    #('/teachers', AdminHandler)
 ], debug=True)
