@@ -26,20 +26,21 @@ from app.handlers.AdminHandler import AdminHandler
 from app.handlers.Lister import Lister
 
 from mocs.login import Login
+from app.classes import StudentAcct
 
 title = "Team B2L"
+# Testing Login page capabilities
+test1 = StudentAcct.Student()
+test1.makeStudent("John", "Doe", "jdoe@uwm.edu", "1234")
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
-template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'courseMaster1':[], 'length':1}
-JINJA_ENVIRONMENT = jinja2.Environment(
-loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-extensions=['jinja2.ext.autoescape'],
-autoescape=True)
-           
+template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'courseMaster1':[], 'errors':[]}
+template_vars['studentMaster1'].append(test1)
+
 app = webapp2.WSGIApplication([
     ('/', Login),
-    #('/', MainHandler),
+    ('/Student FAQs.html', MainHandler),
     #("/list.html", Lister),
     #('/teachers', AdminHandler)
 ], debug=True)

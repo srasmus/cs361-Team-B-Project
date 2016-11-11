@@ -9,10 +9,10 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
   
-- url: /
-  static_files: /mocs/styles/login.css
-
-- url: .*
+- url: /mocs/styles
+  static_dir: styles
+  
+- url: /.*
   script: main.app
 
 libraries:
