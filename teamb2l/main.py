@@ -25,7 +25,7 @@ from app.handlers.MainHandler import MainHandler
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.Lister import Lister
 
-from mocs.login import Login
+from Login import Login
 from app.classes import StudentAcct
 
 title = "Team B2L"

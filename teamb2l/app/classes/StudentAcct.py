@@ -1,6 +1,6 @@
 
 
-class Student(object):
+class StudentAcct(object):
 
     #Constructor initializes an empty list of courses a student is taking,
     def __init__(self):

@@ -1,66 +1,79 @@
+from google.appengine.ext import ndb
 from Course import Course
 
-class TeacherAcct():
-    teachers = []
 
-    #Constructor initializes an empty list of courses an instructor is teaching,
+#All methods must be called statically, with the teacher object given as the (teacher) field
+
+
+class TeacherAcct(ndb.model):
+    name = ndb.StringProperty()
+    email = ndb.StringProperty()
+    password = ndb.StringProperty()
+    admin = ndb.BooleanProperty()
+    courses = ndb.StringProperty(repeated = True)
+
+    #Initializes an empty list of courses an instructor is teaching,
     #as well as add the account to the Master List.
     #Turns the first and last name into a Last, First naming convention
-    def __init__(self,firstName,lastName,email):
-        self.name = lastName+", "+firstName
-        self.email = email
-        self.courses = []
-        self.admin = False
+    def makeTeacher(self,firstName,lastName,email,password):
+        tmp = TeacherAcct(name = lastName+", "+firstName, email = email, password = password, courses = [])
+        tmp.put()
 
-    #Creates a new Course, adds it to personal class list, and Master
+    #Creates a new Course, adds it to personal class list
+    #Updates the teacher info in the datastore
     #Returns the newly created Course
-    def createCourse(self,name):
-        tmp = Course(self,name)
-        self.courses.append(tmp)
-        Course.courses.append(tmp)
+    def createCourse(self,name,teacher):
+        tmp = Course.makeCourse(self,name)
+        teacher.courses.append(tmp)
+        teacher.put()
         return tmp
 
-    #If the Course exists, it is removed from both lists, and the new teacher level class list is returned
+    #Course is removed from course lists and the new teacher level course list is returned
+    #Updates the teacher info in the datastore
     #Otherwise, None is returned
-    def deleteCourse(self,course):
-        if self.courses.contains(course):
-            self.courses.remove(course)
-            Course.courses.remove(course)
-            return self.courses
+    def removeCourse(self,course,teacher):
+        if teacher.courses.contains(course):
+            teacher.courses.remove(course)
+            Course.deleteCourse(course)
+            teacher.put()
+            return teacher.courses
         else:
             return None
 
     #Takes a string of emails separated by commas ","
     #If the Course exists, each student account with that email will be "enrolled" in the class
-    #It returns a dictionary of students by (email string, StudentAcct) if students are succesfully enrolled
+    #It returns a list of student emails
     #Otherwise, None
-    def addStudents(self,course,students):
-        if self.courses.contains(course):
+    def addStudents(self,course,students,teacher):
+        if teacher.courses.contains(course):
             course.enroll(students)
             return course.students
         else:
             return None
 
     #Takes the string of a student's email
-    #If the Course exists, the student is removed from that Course' student list and the updated list is returned
+    #If the Course exists, the student is removed from that Course's student list and the updated list is returned
     # Otherwise, None
-    def removeStudent(self,course,student):
-        if self.courses.contains(course):
+    def removeStudent(self,course,student,teacher):
+        if teacher.courses.contains(course):
             course.unenroll(student)
             return course.students
         else:
             return None
 
-    def addTeacher(self,teacher):
-        if self.admin:
-            # if ~TeacherAcct.teachers.contains(teacher):
-                TeacherAcct.teachers.append(teacher)
+    #Checks if given teacher is an admin
+    #Takes the credentials of a new teacher, and creates a new teacher
+    def addTeacher(self,teacher,firstName,lastName,email,password):
+        if teacher.admin:
+            TeacherAcct.makeTeacher(firstName,lastName,email,password)
         else:
             return None
 
-    def removeTeacher(self, teacher):
-        if self.admin:
-            if TeacherAcct.teachers.contains(teacher):
-                TeacherAcct.teachers.remove(teacher)
+    # Checks if given teacher is an admin
+    # Deletes teacher with email (email)
+    def deleteTeacher(self, teacher,email):
+        if teacher.admin:
+            tmp = TeacherAcct.query(TeacherAcct.email == email).fetch()
+            tmp.delete()
         else:
             return None

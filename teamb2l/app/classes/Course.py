@@ -1,6 +1,5 @@
 
 class Course():
-    courses = []
     #Constructor initializes an empty dict of students enrolled in the class,
     #as well as add the class to the Master List.
     def __init__(self,teacher,name):
