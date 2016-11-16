@@ -2,9 +2,6 @@ from google.appengine.ext import ndb
 from Course import Course
 
 
-#All methods must be called statically, with the teacher object given as the (teacher) field
-
-
 class TeacherAcct(ndb.model):
     name = ndb.StringProperty()
     email = ndb.StringProperty()
@@ -22,21 +19,21 @@ class TeacherAcct(ndb.model):
     #Creates a new Course, adds it to personal class list
     #Updates the teacher info in the datastore
     #Returns the newly created Course
-    def createCourse(self,name,teacher):
+    def createCourse(self,name):
         tmp = Course.makeCourse(self,name)
-        teacher.courses.append(tmp)
-        teacher.put()
+        self.courses.append(tmp)
+        self.put()
         return tmp
 
     #Course is removed from course lists and the new teacher level course list is returned
     #Updates the teacher info in the datastore
     #Otherwise, None is returned
-    def removeCourse(self,course,teacher):
-        if teacher.courses.contains(course):
-            teacher.courses.remove(course)
+    def removeCourse(self,course):
+        if self.courses.contains(course):
+            self.courses.remove(course)
             Course.deleteCourse(course)
-            teacher.put()
-            return teacher.courses
+            self.put()
+            return self.courses
         else:
             return None
 
@@ -44,9 +41,10 @@ class TeacherAcct(ndb.model):
     #If the Course exists, each student account with that email will be "enrolled" in the class
     #It returns a list of student emails
     #Otherwise, None
-    def addStudents(self,course,students,teacher):
-        if teacher.courses.contains(course):
-            course.enroll(students)
+    def addStudents(self,course,students):
+        if self.courses.contains(course):
+            tmp = Course.query(courseID == course).fetch()
+            tmp.enroll(students)
             return course.students
         else:
             return None
@@ -54,9 +52,10 @@ class TeacherAcct(ndb.model):
     #Takes the string of a student's email
     #If the Course exists, the student is removed from that Course's student list and the updated list is returned
     # Otherwise, None
-    def removeStudent(self,course,student,teacher):
+    def removeStudent(self,course,students,teacher):
         if teacher.courses.contains(course):
-            course.unenroll(student)
+            tmp = Course.query(courseID == course).fetch()
+            tmp.unenroll(students)
             return course.students
         else:
             return None
