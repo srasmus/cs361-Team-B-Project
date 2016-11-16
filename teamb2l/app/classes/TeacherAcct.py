@@ -43,7 +43,7 @@ class TeacherAcct(ndb.model):
     #Otherwise, None
     def addStudents(self,course,students):
         if self.courses.contains(course):
-            tmp = Course.query(courseID == course).fetch()
+            tmp = Course.query(Course.courseID == course).fetch()
             tmp.enroll(students)
             return course.students
         else:
@@ -54,7 +54,7 @@ class TeacherAcct(ndb.model):
     # Otherwise, None
     def removeStudent(self,course,students,teacher):
         if teacher.courses.contains(course):
-            tmp = Course.query(courseID == course).fetch()
+            tmp = Course.query(Course.courseID == course).fetch()
             tmp.unenroll(students)
             return course.students
         else:

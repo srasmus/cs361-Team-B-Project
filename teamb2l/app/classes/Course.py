@@ -1,4 +1,5 @@
 from google.appengine.ext import ndb
+from StudentAcct import StudentAcct
 import random
 
 
@@ -31,6 +32,10 @@ class Course(ndb.model):
             if self.students.contains(i) == False:
                 self.students.append(i)
         self.put()
+        for e in self.students:
+            if StudentAcct.query().fetch().contains(e):
+                StudentAcct.query(StudentAcct.email == e).fetch().courses.append(e.courseID)
+
         return self.students
 
     #If the email exists in the list, it is removed and the new list is returned
@@ -39,6 +44,9 @@ class Course(ndb.model):
         if self.students.contains(email):
             self.students.remove(email)
             self.put()
+            for e in self.students:
+                if StudentAcct.query().fetch().contains(e):
+                    StudentAcct.query(StudentAcct.email == e).fetch().courses.remove(e.courseID)
             return self.students
         else:
             return None
