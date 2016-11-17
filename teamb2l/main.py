@@ -18,19 +18,22 @@ import webapp2
 import random
 import os
 import urllib
+
 import jinja2
 import logging
 from app.classes.TeacherAcct import TeacherAcct
 from app.handlers.MainHandler import MainHandler
+
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.Lister import Lister
-
 from Login import Login
 from app.classes import StudentAcct
 
+from google.appengine.ext import ndb
+
 title = "Team B2L"
 # Testing Login page capabilities
-test1 = StudentAcct.Student()
+test1 = StudentAcct.StudentAcct()
 test1.makeStudent("John", "Doe", "jdoe@uwm.edu", "1234")
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.

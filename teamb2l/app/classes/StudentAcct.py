@@ -1,8 +1,8 @@
 from google.appengine.ext import ndb
-from Course import Course
+import Course
 
-class StudentAcct(ndb.model):
-    name = ndb.StringProperty
+class StudentAcct(ndb.Model):
+    name = ndb.StringProperty()
     email = ndb.StringProperty()
     password = ndb.StringProperty()
     courses = ndb.StringProperty(repeated = True)
@@ -13,8 +13,8 @@ class StudentAcct(ndb.model):
     #Stores in datastore
     def makeStudent(self, firstName, lastName, email, password):
         tmplist = []
-        for i in Course.query().fetch():
+        for i in Course.Course.query().fetch():
             if(i.students.contains(self.email)):
                 tmplist.append(i.courseID)
-        tmp = StudentAcct(name = lastName+", "+firstName,email = email,password = password,courses = tmplist)
+        tmp = StudentAcct(name = str(lastName+", "+firstName), email = email,password = password,courses = tmplist)
         tmp.put()

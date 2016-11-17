@@ -3,7 +3,7 @@ from StudentAcct import StudentAcct
 import random
 
 
-class Course(ndb.model):
+class Course(ndb.Model):
     courseID = ndb.StringProperty()
     teacher = ndb.StringProperty()
     name = ndb.StringProperty()

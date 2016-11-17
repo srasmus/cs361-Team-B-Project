@@ -2,7 +2,7 @@ from google.appengine.ext import ndb
 from Course import Course
 
 
-class TeacherAcct(ndb.model):
+class TeacherAcct(ndb.Model):
     name = ndb.StringProperty()
     email = ndb.StringProperty()
     password = ndb.StringProperty()
