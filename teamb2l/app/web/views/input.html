@@ -1,8 +1,10 @@
-{% extend index.html %}
-<form action = "/list.html" method="post">
-	Teacher Email: <input type="email" id="teachers" name="teachers"><br/>
-	Student Email: <input type="email" id="students" name="students"><br/>
-	Class ID: <input type="text" id="classID" name="classID"><br/>
-	<br/>
-	<input type="submit" value="Add Item(s)">
-</form>
+{% extends "base.html" %}
+{% block content %}
+	<form action = "/list.html" method="post">
+		Teacher Email: <input type="email" id="teachers" name="teachers"><br/>
+		Student Email: <input type="email" id="students" name="students"><br/>
+		Class ID: <input type="text" id="classID" name="classID"><br/>
+		<br/>
+		<input type="submit" value="Add Item(s)">
+	</form>
+{% endblock %}

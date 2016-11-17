@@ -24,19 +24,18 @@ from app.classes.TeacherAcct import TeacherAcct
 from app.handlers.MainHandler import MainHandler
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.Lister import Lister
+from app.handlers.LoginHandler import LoginHandler
+from app.handlers.RegisterHandler import RegisterHandler
 
 title = "Database Maintenance"
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
-template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'courseMaster1':[], 'length':1}
-JINJA_ENVIRONMENT = jinja2.Environment(
-loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
-extensions=['jinja2.ext.autoescape'],
-autoescape=True)
            
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ("/list.html", Lister),
-    ('/teachers', AdminHandler)
+    ('/teachers', AdminHandler),
+    ('/login', LoginHandler),
+    ('/register', RegisterHandler)
 ], debug=True)
