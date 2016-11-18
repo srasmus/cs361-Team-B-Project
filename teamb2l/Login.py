@@ -19,23 +19,28 @@ class Login(webapp2.RequestHandler):
  
 # Login posts to self to save code   
     def post(self):
+        authenticate = False
+        name = ""
         main.template_vars['errors'] = []
         email = self.request.get("username")
         password = self.request.get("password")
         
         for student in StudentAcct.query().fetch():
             if 1 == 1:
-# Lets the user know they are logged in               
-                postMe = """
+                authenticate = True
+                name = student.name
+# Lets the user know they are logged in
+        if authenticate:
+            postMe = """
 <html>
 <head></head>
-    <body> You are logged in as """ + student.name + """</body>
+    <body> You are logged in as """ + name + """</body>
     <meta http-equiv="refresh" content="2;url=/Student FAQs.html">
 </html>
             """
-                self.response.write(postMe)
+            self.response.write(postMe)
 # If login fails this happens
-            else:
-                main.template_vars['errors'].append("-Incorrect Login")
-                template = JINJA_ENVIRONMENT.get_template('app/Mocs/Login.html')
-                self.response.write(template.render(main.template_vars))                                  
+        else:
+            main.template_vars['errors'].append("-Incorrect Login")
+            template = JINJA_ENVIRONMENT.get_template('app/Mocs/Login.html')
+            self.response.write(template.render(main.template_vars))                                  
