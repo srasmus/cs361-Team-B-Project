@@ -27,7 +27,7 @@ from app.handlers.TestHandler import TestHandler
 
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.StudentHandler import StudentHandler
-from Login import Login
+from app.handlers.LoginHandler import LoginHandler
 from app.classes import StudentAcct
 
 from google.appengine.ext import ndb
@@ -39,7 +39,7 @@ title = "Team B2L"
 template_vars = {'title':title, 'errors':[]}
 
 app = webapp2.WSGIApplication([
-    ('/', Login),
+    ('/', LoginHandler),
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     #("/list.html", Lister),

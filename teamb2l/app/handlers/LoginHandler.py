@@ -7,14 +7,14 @@ from app.classes.StudentAcct import StudentAcct
 import main
 
 JINJA_ENVIRONMENT = jinja2.Environment(
-loader=jinja2.FileSystemLoader(os.path.join((os.path.dirname(__file__)),".")),
+loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'Mocs')),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
 
-class Login(webapp2.RequestHandler):
+class LoginHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('app/Mocs/Login.html')
+        template = JINJA_ENVIRONMENT.get_template('/Login.html')
         self.response.write(template.render(main.template_vars))
  
 # Login posts to self to save code   
@@ -42,5 +42,5 @@ class Login(webapp2.RequestHandler):
 # If login fails this happens
         else:
             main.template_vars['errors'].append("-Incorrect Login")
-            template = JINJA_ENVIRONMENT.get_template('app/Mocs/Login.html')
+            template = JINJA_ENVIRONMENT.get_template('/Login.html')
             self.response.write(template.render(main.template_vars))                                  
