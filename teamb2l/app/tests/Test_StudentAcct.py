@@ -4,11 +4,12 @@ Created on Nov 8, 2016
 @author: Eric
 '''
 import unittest
-from teamb2l.app.courses.StudentAcct import Student
+
+from ..classes.StudentAcct import StudentAcct
 
 class StudentTest(unittest.TestCase):
     def setUp(self):
-        self.StudentAcct = Student()
+        self.StudentAcct = StudentAcct()
         
     def tear(self):
         del self.StudentAcct

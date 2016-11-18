@@ -2,6 +2,8 @@ import webapp2
 import jinja2
 import os
 
+from app.classes.StudentAcct import StudentAcct
+
 import main
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -21,17 +23,18 @@ class Login(webapp2.RequestHandler):
         email = self.request.get("username")
         password = self.request.get("password")
         
-        for student in main.template_vars["studentMaster1"]:            
+        for student in StudentAcct.query().fetch():
             if student.email == email and student.password == password:
 # Lets the user know they are logged in               
                 postMe = """
 <html>
 <head></head>
-    <body> You are logged in as """ + student.email + """</body>
+    <body> You are logged in as """ + student.name + """</body>
     <meta http-equiv="refresh" content="2;url=/Student FAQs.html">
 </html>
             """
                 self.response.write(postMe)
+                break
 # If login fails this happens
             else:
                 main.template_vars['errors'].append("-Incorrect Login")

@@ -23,6 +23,7 @@ import jinja2
 import logging
 from app.classes.TeacherAcct import TeacherAcct
 from app.handlers.MainHandler import MainHandler
+from app.handlers.TestHandler import TestHandler
 
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.Lister import Lister
@@ -38,12 +39,12 @@ test1.makeStudent("John", "Doe", "jdoe@uwm.edu", "1234")
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
-template_vars = {'title':title, 'teacherMaster1':[], 'studentMaster1':[], 'courseMaster1':[], 'errors':[]}
-template_vars['studentMaster1'].append(test1)
+template_vars = {'title':title, 'errors':[]}
 
 app = webapp2.WSGIApplication([
     ('/', Login),
     ('/Student FAQs.html', MainHandler),
+    ('/test', TestHandler),
     #("/list.html", Lister),
     #('/teachers', AdminHandler)
 ], debug=True)
