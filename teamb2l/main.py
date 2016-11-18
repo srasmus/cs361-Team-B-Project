@@ -26,16 +26,13 @@ from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
 
 from app.handlers.AdminHandler import AdminHandler
-from app.handlers.Lister import Lister
+from app.handlers.StudentHandler import StudentHandler
 from Login import Login
 from app.classes import StudentAcct
 
 from google.appengine.ext import ndb
 
 title = "Team B2L"
-# Testing Login page capabilities
-test1 = StudentAcct.StudentAcct()
-test1.makeStudent("John", "Doe", "jdoe@uwm.edu", "1234")
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
@@ -43,7 +40,7 @@ template_vars = {'title':title, 'errors':[]}
 
 app = webapp2.WSGIApplication([
     ('/', Login),
-    ('/Student FAQs.html', MainHandler),
+    ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     #("/list.html", Lister),
     #('/teachers', AdminHandler)

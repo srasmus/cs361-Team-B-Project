@@ -11,7 +11,7 @@ handlers:
   upload: favicon\.ico
   
 - url: /styles
-  static_dir: Mocs/styles
+  static_dir: app/Mocs/styles
 
 - url: .*
   script: main.app
