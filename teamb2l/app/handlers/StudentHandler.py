@@ -21,7 +21,7 @@ class StudentHandler(webapp2.RequestHandler):
 <html>
 <head></head>
     <body> Logging Out </body>
-    <meta http-equiv="refresh" content="2;url=/Login.html">
+    <meta http-equiv="refresh" content="2;url=/">
 </html>
             """
             self.response.write(postMe)
