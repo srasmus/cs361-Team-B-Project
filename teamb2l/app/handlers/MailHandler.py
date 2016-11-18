@@ -11,8 +11,8 @@ loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'Mo
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
-class QuestionHandler(webapp2.RequestHandler):
+class MailHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/Student Compose.html')
+        template = JINJA_ENVIRONMENT.get_template('/Inbox Student.html')
         self.response.write(template.render(main.template_vars))
         

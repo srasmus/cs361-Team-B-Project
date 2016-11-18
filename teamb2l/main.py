@@ -18,20 +18,19 @@ import webapp2
 import random
 import os
 import urllib
-
 import jinja2
+
 import logging
 from app.classes.TeacherAcct import TeacherAcct
 from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
-
 from app.handlers.AdminHandler import AdminHandler
+
 from app.handlers.StudentHandler import StudentHandler
 from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
-
+from app.handlers.MailHandler import MailHandler
 from app.classes import StudentAcct
-
 from google.appengine.ext import ndb
 
 title = "Team B2L"
@@ -45,6 +44,6 @@ app = webapp2.WSGIApplication([
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     ('/Student Compose.html', QuestionHandler),
-    #("/list.html", Lister),
+    ('/Inbox Student.html', MailHandler),
     #('/teachers', AdminHandler)
 ], debug=True)
