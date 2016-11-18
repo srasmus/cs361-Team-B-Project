@@ -15,3 +15,13 @@ class StudentHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/Student FAQs.html')
         self.response.write(template.render(main.template_vars))
+        
+    def post(self):
+            postMe = """
+<html>
+<head></head>
+    <body> Logging Out </body>
+    <meta http-equiv="refresh" content="2;url=/Login.html">
+</html>
+            """
+            self.response.write(postMe)
