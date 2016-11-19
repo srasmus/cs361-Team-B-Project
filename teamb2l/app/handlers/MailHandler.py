@@ -15,4 +15,7 @@ class MailHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/Inbox Student.html')
         self.response.write(template.render(main.template_vars))
-        
+
+    def post(self):
+        template = JINJA_ENVIRONMENT.get_template('/Inbox Student.html')
+        self.response.write(template.render(main.template_vars))        
