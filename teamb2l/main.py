@@ -29,7 +29,7 @@ from app.handlers.AdminHandler import AdminHandler
 from app.handlers.StudentHandler import StudentHandler
 from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
-from app.handlers.MailHandler import MailHandler
+from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler
 
 from app.handlers.TeacherHandler import TeacherHandler
 from app.classes import StudentAcct
@@ -39,13 +39,14 @@ title = "Team B2L"
 
 #Master lists of all the student accounts, teacher accounts, and classes in the program.
 #The classes themselves update them
-template_vars = {'title':title, 'errors':[]}
+template_vars = {'title':title, 'errors':[], 'teacher':False}
 
 app = webapp2.WSGIApplication([
     ('/', LoginHandler),
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     ('/Student Compose.html', QuestionHandler),
-    ('/Inbox Student.html', MailHandler),
-    ('/Teacher FAQs.html', TeacherHandler)
+    ('/Inbox Student.html', StudentMailHandler),
+    ('/Teacher FAQs.html', TeacherHandler),
+    ('/Inbox Teacher.html', TeacherMailHandler),
 ], debug=True)

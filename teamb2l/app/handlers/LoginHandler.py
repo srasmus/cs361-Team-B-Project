@@ -25,14 +25,14 @@ class LoginHandler(webapp2.RequestHandler):
         email = self.request.get("username")
         password = self.request.get("password")
         
-        teacher = self.request.get("teacher")        
+        main.template_vars['teacher'] = self.request.get("teacher")        
         
         for student in StudentAcct.query().fetch():
             if 1 == 1:
                 authenticate = True
                 name = student.name
 # Lets the user know they are logged in
-        if authenticate and teacher == False:
+        if authenticate and not main.template_vars['teacher']:
             postMe = """
 <html>
 <head></head>
@@ -41,7 +41,7 @@ class LoginHandler(webapp2.RequestHandler):
 </html>
             """
             self.response.write(postMe)
-        elif authenticate and teacher:
+        elif authenticate and main.template_vars['teacher']:
             postMe = """
 <html>
 <head></head>
