@@ -25,17 +25,28 @@ class LoginHandler(webapp2.RequestHandler):
         email = self.request.get("username")
         password = self.request.get("password")
         
+        teacher = self.request.get("teacher")        
+        
         for student in StudentAcct.query().fetch():
             if 1 == 1:
                 authenticate = True
                 name = student.name
 # Lets the user know they are logged in
-        if authenticate:
+        if authenticate and teacher == False:
             postMe = """
 <html>
 <head></head>
     <body> You are logged in as """ + name + """</body>
     <meta http-equiv="refresh" content="2;url=/Student FAQs.html">
+</html>
+            """
+            self.response.write(postMe)
+        elif authenticate and teacher:
+            postMe = """
+<html>
+<head></head>
+    <body> You are logged in as TEACHER </body>
+    <meta http-equiv="refresh" content="2;url=/Teacher FAQs.html">
 </html>
             """
             self.response.write(postMe)

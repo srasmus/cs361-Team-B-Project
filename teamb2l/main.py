@@ -30,6 +30,8 @@ from app.handlers.StudentHandler import StudentHandler
 from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
 from app.handlers.MailHandler import MailHandler
+
+from app.handlers.TeacherHandler import TeacherHandler
 from app.classes import StudentAcct
 from google.appengine.ext import ndb
 
@@ -45,5 +47,5 @@ app = webapp2.WSGIApplication([
     ('/test', TestHandler),
     ('/Student Compose.html', QuestionHandler),
     ('/Inbox Student.html', MailHandler),
-    #('/teachers', AdminHandler)
+    ('/Teacher FAQs.html', TeacherHandler)
 ], debug=True)
