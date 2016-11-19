@@ -29,7 +29,7 @@ from app.handlers.AdminHandler import AdminHandler
 from app.handlers.StudentHandler import StudentHandler
 from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
-from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler
+from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
 
 from app.handlers.TeacherHandler import TeacherHandler
 from app.classes import StudentAcct
@@ -49,4 +49,8 @@ app = webapp2.WSGIApplication([
     ('/Inbox Student.html', StudentMailHandler),
     ('/Teacher FAQs.html', TeacherHandler),
     ('/Inbox Teacher.html', TeacherMailHandler),
+    ('/Student Compose.html', StudentCompose),
+    ('/Teacher Compose.html', TeacherCompose),
+    ('/Dummy Mail Student.html', DummyStudent),
+    ('/Dummy Mail Teacher.html', DummyTeacher),
 ], debug=True)
