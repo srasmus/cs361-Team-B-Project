@@ -23,7 +23,6 @@ import logging
 from google.appengine.ext import ndb
 
 # Handler Imports
-from app.classes.TeacherAcct import TeacherAcct
 from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
 from app.handlers.AdminHandler import AdminHandler
@@ -32,14 +31,13 @@ from app.handlers.StudentHandler import StudentHandler
 from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
 from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
-from app.handlers.TeacherHandler import TeacherHandler
+from app.handlers.TeacherHandler import *
 
 app = webapp2.WSGIApplication([
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     ('/Student Compose.html', QuestionHandler),
     ('/Inbox Student.html', StudentMailHandler),
-    ('/Teacher FAQs.html', TeacherHandler),
     ('/Inbox Teacher.html', TeacherMailHandler),
     ('/Student Compose.html', StudentCompose),
     ('/Teacher Compose.html', TeacherCompose),
@@ -48,5 +46,7 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/teachers', AdminHandler),
     ('/login', LoginHandler),
-    ('/register', RegisterHandler)
+    ('/register', RegisterHandler),
+    ('/teacher/courses', TeacherCourseHandler),
+    ('/teacher/faq', TeacherFAQHandler)
 ], debug=True)

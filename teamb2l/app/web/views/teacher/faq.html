@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/teacherFAQ.css"/>
+    <title>FAQs</title>
+{% endblock %}
+
+{% block content %}
+    <div id="taskbar">
+        <header>Manage {{ course.courseID }}</header>
+        <form action="/logout" method="post" id="loginForm">
+            <button id="login" type="submit" value="Log out">Log out
+            </button>
+        </form>            
+        <a href="Inbox%20Teacher.html">
+            <input id="mail" type="button" value="Mail"/>
+        </a>
+    </div>
+    <div class="row col-md-10 col-md-offset-1 faqSection">
+        <h1>
+            FAQs
+            <a href="" class="pull-right btn headerButton">Add FAQ</a>
+        </h1>
+
+        <div class="modal fade add-faq" tabindex="-1" role="dialog" aria-labelledby="addFAQModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New FAQ</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/teachers/faq" method="post">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Add FAQ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        {% for faq in faqs %}
+            <form class="faqForm col-md-8 col-md-offset-2" action="/teacher/faq" method="POST">
+                {#<input type="hidden" value={{ faq.key.urlsafe() }} name="faq_key"/>#}
+                <div class="faqHeader">
+                    <input type="text" id="question" class="form-control" value="{{ faq.question }}" name="question"/>
+                </div>
+                <div class="faqBody">
+                    <textarea type="textarea" id="answer" name="answer" class="form-control">{{ faq.answer }}</textarea>
+                    <input type="submit" value="Save" class="formButton btn"/>
+                    <a href="" class="formButton btn">Delete</a>
+                </div>
+            </form>
+        {% endfor %}
+    </div>
+
+    <div class="row col-md-10 col-md-offset-1 studentSection">
+        <h1>
+            Students Enrolled
+            <a href="" class="pull-right btn headerButton">Add Students</a>
+        </h1>
+
+        <hr/>
+    </div>
+{% endblock %}
