@@ -13,6 +13,9 @@ handlers:
 - url: /styles
   static_dir: app/Mocs/styles
 
+- url: /assets
+  static_dir: app/web/assets
+
 - url: .*
   script: main.app
 
