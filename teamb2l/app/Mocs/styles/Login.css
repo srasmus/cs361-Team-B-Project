@@ -22,7 +22,7 @@ body {
 
 #loginForm {
     padding: 20px 40px;
-    position: relative;
+    position: absolute;
     bottom: 100px;
     background-color: rgb(235, 235, 235);
     border: 2px solid rgb(19, 19, 19);
