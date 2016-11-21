@@ -1,5 +1,5 @@
 from google.appengine.ext import ndb
-from StudentAcct import StudentAcct
+import StudentAcct
 import random
 
 
