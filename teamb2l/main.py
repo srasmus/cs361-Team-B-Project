@@ -19,30 +19,22 @@ import random
 import os
 import urllib
 import jinja2
-
 import logging
+from google.appengine.ext import ndb
+
+# Handler Imports
 from app.classes.TeacherAcct import TeacherAcct
 from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
 from app.handlers.AdminHandler import AdminHandler
-
+from app.handlers.RegisterHandler import RegisterHandler
 from app.handlers.StudentHandler import StudentHandler
 from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
 from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
-
 from app.handlers.TeacherHandler import TeacherHandler
-from app.classes import StudentAcct
-from google.appengine.ext import ndb
-
-title = "Team B2L"
-
-#Master lists of all the student accounts, teacher accounts, and classes in the program.
-#The classes themselves update them
-template_vars = {'title':title, 'errors':[], 'teacher':False}
 
 app = webapp2.WSGIApplication([
-    ('/', LoginHandler),
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     ('/Student Compose.html', QuestionHandler),
@@ -53,4 +45,8 @@ app = webapp2.WSGIApplication([
     ('/Teacher Compose.html', TeacherCompose),
     ('/Dummy Mail Student.html', DummyStudent),
     ('/Dummy Mail Teacher.html', DummyTeacher),
+    ('/', MainHandler),
+    ('/teachers', AdminHandler),
+    ('/login', LoginHandler),
+    ('/register', RegisterHandler)
 ], debug=True)
