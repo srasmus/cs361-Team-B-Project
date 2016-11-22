@@ -68,12 +68,12 @@ hr {
     color: rgb(38, 38, 38);
 }
 
-#question {
+.questionField {
     font-family: "Droid Sans";
     font-size: 22px;
 }
 
-#answer {
+.answerField {
     font-size: 16px;
     resize: vertical;
 }

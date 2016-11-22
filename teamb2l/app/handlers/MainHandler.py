@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
                     self.response.write(template.render())
                 elif user.permission == 1:
-                    self.redirect('/teachers/classes')
+                    self.redirect('/teacher/courses')
                 else:
                     template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
                     self.response.write(template.render())

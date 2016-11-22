@@ -1,0 +1,90 @@
+body {
+    font-family: "Open Sans";
+    color: rgb(235, 235, 235);
+    background-color: rgb(38, 38, 38);
+}
+
+#taskbar {
+    position:absolute;
+    height: 45px;
+    width: 100%;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(235, 235, 235);
+}
+
+.classesSection {
+	padding-top: 60px
+}
+
+h1 {
+    color: rgb(225, 196, 92);
+}
+
+hr {
+    border-color: rgb(225, 196, 92);
+}
+
+.goldButton {
+    color: rgb(38, 38, 38);
+    border: 2px solid;
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 20px;
+    background-color: rgb(225, 196, 92);
+}
+
+.formButton {
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 20px;
+    color: rgb(225, 196, 92);
+    margin-top: 5px;
+}
+
+.formButton:hover {
+    color: rgb(225, 196, 92);
+}
+
+.classForm {
+	border-radius: 12px 12px 12px 12px;
+	background-color: rgb(245, 245, 245);
+	padding: 10px 10px 10px 10px;
+}
+
+header {
+    margin: 0px 65px;
+    float: left;
+    color: rgb(38, 38, 38);
+    font-family: "Montserrat";
+    font-size: 29px;
+}
+
+#login {
+    margin: 0px 65px;
+    position: absolute;
+    right: 0px;
+    height: 35px;
+    width: 90px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: rgb(225, 196, 92);
+}
+
+#mail {
+    margin: 0px 156px;
+    position: absolute;
+    right: 0px;
+    height: 35px;
+    width: 90px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: rgb(225, 196, 92);
+}

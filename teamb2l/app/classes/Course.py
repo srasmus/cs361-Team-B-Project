@@ -5,10 +5,8 @@ import random
 
 class Course(ndb.Model):
     courseID = ndb.StringProperty()
-    teacher = ndb.StringProperty()
     name = ndb.StringProperty()
-    students = ndb.StringProperty(repeated = True)
-
+    teacher = ndb.KeyProperty(kind="User")
 
     #Takes a TeacherAcct object and a name for the class
     #a unique class id is generated from the teacher's email and a random number

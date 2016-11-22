@@ -26,12 +26,11 @@ from google.appengine.ext import ndb
 from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
 from app.handlers.AdminHandler import AdminHandler
-from app.handlers.RegisterHandler import RegisterHandler
 from app.handlers.StudentHandler import StudentHandler
-from app.handlers.LoginHandler import LoginHandler
 from app.handlers.QuestionHandler import QuestionHandler
 from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
 from app.handlers.TeacherHandler import *
+from app.handlers.AuthHandler import *
 
 app = webapp2.WSGIApplication([
     ('/Student FAQs.html', StudentHandler),
@@ -48,5 +47,7 @@ app = webapp2.WSGIApplication([
     ('/login', LoginHandler),
     ('/register', RegisterHandler),
     ('/teacher/courses', TeacherCourseHandler),
-    ('/teacher/faq', TeacherFAQHandler)
+    ('/teacher/courses/faq', TeacherFAQHandler),
+    ('/teacher/courses/delete', CourseDeletionHandler),
+    ('/teacher/courses/faq/delete', FAQDeletionHandler)
 ], debug=True)

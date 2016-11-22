@@ -45,3 +45,26 @@ class RegisterHandler(webapp2.RequestHandler):
 			user_key = user.put()
 			self.response.set_cookie('user', user_key.urlsafe())
 			self.redirect('/')
+
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
+        self.response.write(template.render())
+
+    def post(self):
+        email = self.request.get('email')
+        password = self.request.get('password')
+        user = User.query(User.email == email, User.password == password).get()
+
+        if user == None:
+            template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
+            self.response.write(template.render({'errors': ["Error:  Invalid Email or Password."]}))
+        else:
+            self.response.set_cookie('user', user.key.urlsafe())
+            self.redirect('/')
+
+class LogoutHandler(webapp2.RequestHandler):
+	def get(self):
+		pass
+	def post(self):
+		pass

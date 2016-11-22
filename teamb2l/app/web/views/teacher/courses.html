@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block head %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/stylesheets/teacherClasses.css" type="text/css">
+	<title>TeamB2L</title>
+{% endblock %}
+
+{% block content %}
+	<div id="taskbar">
+        <header>Course Listing</header>
+        <form action="/logout" method="post" id="loginForm">
+            <button id="login" type="submit" value="Log out">Log out
+            </button>
+        </form>            
+        <a href="Inbox%20Teacher.html">
+            <input id="mail" type="button" value="Mail"/>
+        </a>
+    </div>
+    <div class="col-md-10 col-md-offset-1 classesSection">
+    	<h1>Courses</h1>
+    	<div class="row">
+	    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2">
+    			<div class="classForm">
+    				<div class="form-group">
+    					<input type="text" class="form-control courseIDForm" name="courseID" placeholder="Course ID"/>
+    				</div>
+	    			<div class="form-group">
+	    				<input type="text" class="form-control nameForm" name="name" placeholder="Course Name"/>
+	    			</div>
+		    		<input type="submit" class="btn formButton" value="Add New Class"/>
+    			</div>
+	    	</form>
+	    </div>
+
+	    <hr/>
+	    {% for course in courses %}
+	    	<div class="row">
+		    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2 classForm">
+		    		<input type="hidden" value={{ course.key.urlsafe() }}/>
+		    		<div class="form-group">
+	    				<input type="text" class="form-control courseIDForm" name="courseID" placeholder="Course ID" value="{{ course.courseID }}"/>
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="text" class="form-control nameForm" name="name" placeholder="Course Name" value="{{ course.name }}"/>
+	    			</div>
+		    		<input type="submit" class="btn formButton" value="Update Course"/>
+		    		<a href="{{ '/teacher/courses/faq?course_key=' + course.key.urlsafe()  }}" class="btn formButton">View Course</a>
+		    	</form>
+		    	<form action="/teacher/courses/delete" method="post">
+		    		<input type="hidden" name="course_key" value="{{ course.key.urlsafe() }}"/>
+		    		<input type="submit" value="Delete Course" class="btn goldButton"/>
+		    	</form>
+		    </div>
+	    {% endfor %}
+    </div>
+{% endblock %}

@@ -7,4 +7,3 @@ class User(ndb.Model):
 	# 1 = Teacher
 	# 2 = Admin
 	permission = ndb.IntegerProperty()
-	courses = ndb.StringProperty(repeated = True)
