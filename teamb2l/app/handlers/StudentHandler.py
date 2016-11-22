@@ -14,7 +14,7 @@ autoescape=True)
 class StudentHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/Student FAQs.html')
-        self.response.write(template.render(main.template_vars))
+        self.response.write(template.render())
         
     def post(self):
             postMe = """

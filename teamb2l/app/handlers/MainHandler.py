@@ -24,7 +24,7 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
-                    template = JINJA_ENVIRONMENT.get_template('/student/faq.html')
+                    template = JINJA_ENVIRONMENT.get_template('/sPage.html')
                     self.response.write(template.render())
                 elif user.permission == 1:
                     self.redirect('/teachers/classes')
