@@ -65,6 +65,16 @@ class LoginHandler(webapp2.RequestHandler):
 
 class LogoutHandler(webapp2.RequestHandler):
 	def get(self):
-		pass
+		user_cookie = self.request.cookies.get('user')
+		if user_cookie == "":
+			self.redirect("/")
+		else:
+			self.response.delete_cookie('user')
+			self.redirect("/login")
 	def post(self):
-		pass
+		user_cookie = self.request.cookies.get('user')
+		if user_cookie == "":
+			self.redirect("/")
+		else:
+			self.response.delete_cookie('user')
+			self.redirect("/login")
