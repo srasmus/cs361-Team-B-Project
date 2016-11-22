@@ -39,6 +39,16 @@ body {
     font-size: 16px;
     color: rgb(225, 196, 92);
 }
+#testButton {
+    height: 40px;
+    width: 284px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: rgb(225, 196, 92);
+}
 
 .textField {
     margin: 6px 0px;

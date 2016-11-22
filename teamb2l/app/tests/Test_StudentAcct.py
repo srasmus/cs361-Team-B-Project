@@ -10,7 +10,7 @@ from ..classes.StudentAcct import StudentAcct
 class StudentTest(unittest.TestCase):
     def setUp(self):
         self.StudentAcct = StudentAcct()
-        
+
     def tear(self):
         del self.StudentAcct
         

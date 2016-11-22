@@ -15,10 +15,11 @@ class Course(ndb.Model):
     #it makes sure the ID is unique
     #Then stores it in the datastore
     def makeCourse(self,teacher,name):
-        id = teacher.email+":"+random.randint(0,1000)
-        if teacher.courses.contains(id) == False:
+        id = teacher.email+":"+str(random.randint(0,1000))
+        if teacher.courses.__contains__(id) == False:
             tmp = Course(courseID = id, teacher = teacher.email, name = name, students = [])
             tmp.put()
+            return tmp
         else:
             Course.makeCourse(teacher,name)
 
@@ -29,24 +30,24 @@ class Course(ndb.Model):
     def enroll(self,studentString):
         tmp = studentString.split(",")
         for i in tmp:
-            if self.students.contains(i) == False:
+            if self.students.__contains__(i) == False:
                 self.students.append(i)
         self.put()
         for e in self.students:
-            if StudentAcct.query().fetch().contains(e):
-                StudentAcct.query(StudentAcct.email == e).fetch().courses.append(e.courseID)
+            if StudentAcct.StudentAcct.query().fetch().__contains__(e):
+                StudentAcct.StudentAcct.query(StudentAcct.email == e).fetch().courses.append(e.courseID)
 
         return self.students
 
     #If the email exists in the list, it is removed and the new list is returned
     #Otherwise, None
     def unenroll(self,email):
-        if self.students.contains(email):
+        if self.students.__contains__(email):
             self.students.remove(email)
             self.put()
             for e in self.students:
-                if StudentAcct.query().fetch().contains(e):
-                    StudentAcct.query(StudentAcct.email == e).fetch().courses.remove(e.courseID)
+                if StudentAcct.StudentAcct.query().fetch().__contains__(e):
+                    StudentAcct.StudentAcct.query(StudentAcct.email == e).fetch().courses.remove(e.courseID)
             return self.students
         else:
             return None

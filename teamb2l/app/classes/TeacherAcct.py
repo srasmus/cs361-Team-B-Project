@@ -15,13 +15,14 @@ class TeacherAcct(ndb.Model):
     def makeTeacher(self,firstName,lastName,email,password):
         tmp = TeacherAcct(name = lastName+", "+firstName, email = email, password = password, courses = [])
         tmp.put()
-
+        return tmp
     #Creates a new Course, adds it to personal class list
     #Updates the teacher info in the datastore
     #Returns the newly created Course
     def createCourse(self,name):
-        tmp = Course.makeCourse(self,name)
-        self.courses.append(tmp)
+        x = Course()
+        tmp = x.makeCourse(self,name)
+        self.courses.append(tmp.courseID)
         self.put()
         return tmp
 
@@ -29,7 +30,7 @@ class TeacherAcct(ndb.Model):
     #Updates the teacher info in the datastore
     #Otherwise, None is returned
     def removeCourse(self,course):
-        if self.courses.contains(course):
+        if self.courses.__contains__(course):
             self.courses.remove(course)
             Course.deleteCourse(course)
             self.put()
@@ -42,7 +43,7 @@ class TeacherAcct(ndb.Model):
     #It returns a list of student emails
     #Otherwise, None
     def addStudents(self,course,students):
-        if self.courses.contains(course):
+        if self.courses.__contains__(course):
             tmp = Course.query(Course.courseID == course).fetch()
             tmp.enroll(students)
             return course.students
@@ -53,7 +54,7 @@ class TeacherAcct(ndb.Model):
     #If the Course exists, the student is removed from that Course's student list and the updated list is returned
     # Otherwise, None
     def removeStudent(self,course,students,teacher):
-        if teacher.courses.contains(course):
+        if teacher.courses.__contains__(course):
             tmp = Course.query(Course.courseID == course).fetch()
             tmp.unenroll(students)
             return course.students
