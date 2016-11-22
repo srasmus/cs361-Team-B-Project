@@ -30,9 +30,9 @@ header {
 
 #login {
     position: absolute;
-    right: 5%;
+    right: 4%;
     height: 100%;
-    width: 5%;
+    width: 6%;
     background-color: rgb(38, 38, 38);
     border: 2px solid rgb(19, 19, 19);
     border-radius: 5px;

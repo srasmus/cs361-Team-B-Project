@@ -20,7 +20,7 @@ class StudentHandler(webapp2.RequestHandler):
             postMe = """
 <html>
 <head></head>
-    <body> Logging Out </body>
+    <body> Going Home </body>
     <meta http-equiv="refresh" content="2;url=/">
 </html>
             """
