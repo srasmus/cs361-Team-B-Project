@@ -123,6 +123,13 @@ header {
     left: 5%;
     width: 80%;
 }
+#Select {
+    margin: 45px; 0px; 0px;
+    position: relative;
+    left: 5%;
+    width: 80%;
+    color:black;
+}
 
 #replySubjectBar {
     min-height: 35px;

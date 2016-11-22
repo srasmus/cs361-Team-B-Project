@@ -14,5 +14,5 @@ autoescape=True)
 class QuestionHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/Student Compose.html')
-        self.response.write(template.render(main.template_vars))
+        self.response.write(template.render())
         

@@ -18,7 +18,7 @@ class StudentMailHandler(webapp2.RequestHandler):
 
     def post(self):
         template = JINJA_ENVIRONMENT.get_template('/Inbox Student.html')
-        self.response.write(template.render(main.template_vars)) 
+        self.response.write(template.render())
             
 class TeacherMailHandler(webapp2.RequestHandler):
     def get(self):
@@ -42,7 +42,7 @@ class TeacherCompose(webapp2.RequestHandler):
 class DummyStudent(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/Dummy Mail Student.html')
-        self.response.write(template.render(main.template_vars))
+        self.response.write(template.render())
 
 class DummyTeacher(webapp2.RequestHandler):
     def get(self):
