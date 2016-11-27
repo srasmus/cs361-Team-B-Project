@@ -41,10 +41,20 @@ class RegisterHandler(webapp2.RequestHandler):
 			user = User()
 			user.email = email
 			user.password = password
-			user.permission = 0
+			user.permission = int(self.request.get('userType'))
 			user_key = user.put()
 			self.response.set_cookie('user', user_key.urlsafe())
-			self.redirect('/')
+			postMe = """
+<html>
+<head></head>
+	<body style="background-color:rgb(45, 45, 45);">
+	<center><img src="/assets/giphy.gif" alt="Check"><br>
+	<font color="Gold" style="font-family:Montserrat;">
+	 Registration Successful </font></center></body>
+	<meta http-equiv="refresh" content="2;url=/">
+</html>
+			"""
+			self.response.write(postMe)
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):

@@ -21,7 +21,7 @@ class StudentHandler(webapp2.RequestHandler):
 <html>
 <head></head>
     <body> Going Home </body>
-    <meta http-equiv="refresh" content="2;url=/">
+    <meta http-equiv="refresh" content="1;url=/">
 </html>
             """
             self.response.write(postMe)
