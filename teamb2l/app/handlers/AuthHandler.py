@@ -4,6 +4,7 @@ import jinja2
 import logging
 from ..classes.User import User
 
+from ..classes.StudentAcct import StudentAcct
 from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -38,10 +39,16 @@ class RegisterHandler(webapp2.RequestHandler):
 			template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
 			self.response.write(template.render({'errors': ["Error: Passwords do not match"]}))
 		else:
-			user = User()
+			if int(self.request.get('userType')) == 0:
+				user = StudentAcct()
+				user.name = self.request.get('name')
+				user.courses = ["361", "362"]
+			else:
+				user = User()
+								
+			user.permission = int(self.request.get('userType'))
 			user.email = email
 			user.password = password
-			user.permission = int(self.request.get('userType'))
 			user_key = user.put()
 			self.response.set_cookie('user', user_key.urlsafe())
 			postMe = """
@@ -57,21 +64,24 @@ class RegisterHandler(webapp2.RequestHandler):
 			self.response.write(postMe)
 
 class LoginHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
-        self.response.write(template.render())
+	def get(self):
+		template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
+		self.response.write(template.render())
 
-    def post(self):
-        email = self.request.get('email')
-        password = self.request.get('password')
-        user = User.query(User.email == email, User.password == password).get()
-
-        if user == None:
-            template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
-            self.response.write(template.render({'errors': ["Error:  Invalid Email or Password."]}))
-        else:
-            self.response.set_cookie('user', user.key.urlsafe())
-            self.redirect('/')
+	def post(self):
+		email = self.request.get('email')
+		password = self.request.get('password')
+		user = User.query(User.email == email, User.password == password).get()
+		
+		if user == None:
+			user = StudentAcct.query(StudentAcct.email == email, StudentAcct.password == password).get()
+		
+		if user == None:
+			template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
+			self.response.write(template.render({'errors': ["Error:  Invalid Email or Password."]}))
+		else:
+			self.response.set_cookie('user', user.key.urlsafe())
+			self.redirect('/')
 
 class LogoutHandler(webapp2.RequestHandler):
 	def get(self):

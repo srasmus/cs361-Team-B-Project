@@ -1,10 +1,10 @@
 from google.appengine.ext import ndb
-import Course
+from User import User
 
-class StudentAcct(ndb.Model):
+import Course 
+
+class StudentAcct(User):
     name = ndb.StringProperty()
-    email = ndb.StringProperty()
-    password = ndb.StringProperty()
     courses = ndb.StringProperty(repeated = True)
 
 

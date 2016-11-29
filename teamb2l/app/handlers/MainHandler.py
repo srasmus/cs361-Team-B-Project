@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import os
 import logging
+from ..classes.StudentAcct import StudentAcct
 from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -24,8 +25,9 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
+                    data = {"user":user}
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
-                    self.response.write(template.render())
+                    self.response.write(template.render(data))
                 elif user.permission == 1:
                     self.redirect('/teacher/courses')
                 else:
