@@ -21,11 +21,13 @@ class StudentTest(unittest.TestCase):
         self.assertTrue(len(self.StudentAcct.courses) == 0)
         
     def test_makeStudent(self):
-        self.StudentAcct.makeStudent("John", "Smith", "jsmith@uwm.edu", 12345)
-        self.assertEqual(self.StudentAcct.firstName, "John")
-        self.assertEqual(self.StudentAcct.lastName, "Smith")       
-        self.assertEqual(self.StudentAcct.email, "jsmith@uwm.edu")  
-        self.assertEqual(self.StudentAcct.courses[0], 12345)
+        self.setUp()
+        self.StudentAcct.makeStudent("John", "Smith", "jsmith@uwm.edu", "12345")
+        self.assertEqual(self.StudentAcct.name, "Smith, John")
+        self.assertEqual(self.StudentAcct.email, "jsmith@uwm.edu")
+        self.assertEqual(self.StudentAcct.courses[0], "12345")
+        self.tear()
               
 suite = unittest.TestLoader().loadTestsFromTestCase(StudentTest)
 unittest.TextTestRunner(verbosity=2).run(suite)
+
