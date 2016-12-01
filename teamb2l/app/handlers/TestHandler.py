@@ -3,7 +3,7 @@ import jinja2
 import os
 
 from ..tests.Test_StudentAcct import StudentTest
-from htmltester import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner
 import main
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -16,4 +16,5 @@ autoescape=True)
 class TestHandler(webapp2.RequestHandler):
     def get(self):
         test = HTMLTestRunner()
-        self.response.write(test.run(StudentTest('test_makeStudent').test_makeStudent()).render())
+        result = test._generate_report(test.run(StudentTest('test_makeStudent')))
+        self.response.write(result)
