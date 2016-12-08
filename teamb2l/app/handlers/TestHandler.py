@@ -1,8 +1,8 @@
 import webapp2
 import jinja2
 import os
-
-from ..tests.Test_StudentAcct import StudentTest
+import unittest
+from..tests import Test_StudentAcct
 from HTMLTestRunner import HTMLTestRunner
 import main
 
@@ -16,5 +16,5 @@ autoescape=True)
 class TestHandler(webapp2.RequestHandler):
     def get(self):
         test = HTMLTestRunner()
-        result = test._generate_report(test.run(StudentTest('test_makeStudent')))
+        result = test._generate_report(test.run(Test_StudentAcct.suite))
         self.response.write(result)
