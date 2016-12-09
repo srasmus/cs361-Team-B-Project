@@ -1,5 +1,5 @@
 
-"""
+
 from ..classes.TeacherAcct import TeacherAcct
 from ..classes.Course import Course
 
