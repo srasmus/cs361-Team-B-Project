@@ -77,7 +77,7 @@ class TeacherCourseHandler(webapp2.RequestHandler):
             courses = [] if courses == None else courses
             template = JINJA_ENVIRONMENT.get_template('/teacher/courses.html')
             self.response.write(template.render({
-                'courses': courses
+                'courses': courses, 'user':user.name
             }))
     def post(self):
         user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))

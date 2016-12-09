@@ -3,7 +3,20 @@ body {
     color: rgb(235, 235, 235);
     background-color: rgb(38, 38, 38);
 }
-
+#login {
+    margin: 0px 65px;
+    position: absolute;
+    right: 0px;
+    height: 35px;
+    width: 90px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 13px;
+    color: rgb(225, 196, 92);
+    z-index: 1;
+}
 #taskbar {
     position:absolute;
     height: 45px;
@@ -61,20 +74,6 @@ header {
     font-size: 29px;
 }
 
-#login {
-    margin: 0px 65px;
-    position: absolute;
-    right: 0px;
-    height: 35px;
-    width: 90px;
-    background-color: rgb(38, 38, 38);
-    border: 2px solid rgb(19, 19, 19);
-    border-radius: 5px;
-    font-family: "Montserrat";
-    font-size: 13px;
-    color: rgb(225, 196, 92);
-}
-
 #mail {
     margin: 0px 156px;
     position: absolute;
@@ -87,4 +86,5 @@ header {
     font-family: "Montserrat";
     font-size: 13px;
     color: rgb(225, 196, 92);
+    z-index: 1;
 }

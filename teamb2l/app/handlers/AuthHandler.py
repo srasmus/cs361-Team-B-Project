@@ -20,7 +20,8 @@ class RegisterHandler(webapp2.RequestHandler):
 		email = self.request.get('email')
 		password = self.request.get('password')
 		confirm_pass = self.request.get('confirm')
-
+		name = self.request.get('name')
+		
 		user = User.query(User.email == email).get()
 
 		logging.info(user)
@@ -49,6 +50,7 @@ class RegisterHandler(webapp2.RequestHandler):
 			user.permission = int(self.request.get('userType'))
 			user.email = email
 			user.password = password
+			user.name = name
 			user_key = user.put()
 			self.response.set_cookie('user', user_key.urlsafe())
 			postMe = """
