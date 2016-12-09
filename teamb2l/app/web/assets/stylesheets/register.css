@@ -1,12 +1,15 @@
 body {
-	position: absolute;
 	background-color: rgb(38, 38, 38);
 	font-family: "Droid Sans";
     font-weight: bold;
-    width: 500px;
+    width: 410px;
+    text-align: center;
+    margin: auto;
 }
 
 h1 {
+	position: relative;
+	left: 4%;
 	color: rgb(225, 196, 92);
 	text-align: center;
 }
@@ -22,15 +25,11 @@ form {
 
 #register {
 	height: 40px;
-    width: 328px;
+    width: 330px;
     background-color: rgb(38, 38, 38);
     border: 2px solid rgb(38, 38, 38);
     border-radius: 5px;
     font-family: "Montserrat";
     font-size: 16px;
     color: rgb(225, 196, 92);
-}
-.col-md-3	{
-	position: absolute;
-	left: 50%;
 }
