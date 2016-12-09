@@ -98,6 +98,7 @@ header {
     font-family: "Montserrat";
     font-size: 13px;
     color: rgb(225, 196, 92);
+    z-index: 1;
 }
 
 #mail {
@@ -112,6 +113,7 @@ header {
     font-family: "Montserrat";
     font-size: 13px;
     color: rgb(225, 196, 92);
+    z-index: 1;
 }
 
 #heading {
