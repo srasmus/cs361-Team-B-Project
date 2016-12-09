@@ -91,9 +91,26 @@ header {
 	border: 1px solid rgb(225, 196, 92);
 	top: 45px;
 	left: 60px;
-	
-#classes	{
+}	
+select { 
     font-family: "Montserrat";
-    font-size: 13px;
+    font-size: 16px;
+	position:relative;
+	left: 20%;
+	top: -15px;
+	width: 200px;
+	text-align-last:center; 
+	background-color: rgb(225, 196, 92);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 5px;
 }
+#register {
+	height: 40px;
+    width: 330px;
+    background-color: rgb(38, 38, 38);
+    border: 2px solid rgb(38, 38, 38);
+    border-radius: 5px;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: rgb(225, 196, 92);
 }
