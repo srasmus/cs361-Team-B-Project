@@ -1,6 +1,7 @@
 from google.appengine.ext import ndb
-import StudentAcct
+from ..classes.StudentCourse import StudentCourse
 import random
+from ..classes.User import User
 
 
 class Course(ndb.Model):
@@ -20,30 +21,30 @@ class Course(ndb.Model):
             return tmp
 
     #Takes a string of student emails, all separated by commas ","
-    #It then merges the list of strings into the student list
     #Then updates the Course object
-    #The updated list is returned
     def enroll(self,studentString):
-        tmp = studentString.split(",")
-        for i in tmp:
-            if self.students.__contains__(i) == False:
-                self.students.append(i)
+        students = studentString.split(",")
+        courses = StudentCourse.query(StudentCourse.course==self.key).fetch()
+        for i in students:
+            if courses:
+                for course in courses:
+                    if course.student.get().email==i:
+                        i.remove()
+        for student in students:
+            if User.query(User.email==student).fetch() == []:
+                tmp = User(name="Unnamed",email=student,password="1234",permission=0)
+                tmp.put()
+                pivot = StudentCourse(student=tmp.key,course=self.key)
+                pivot.put
+            else:
+                tmp = User.query(User.email==student).fetch()[0]
+                pivot = StudentCourse(student=tmp.key, course=self.key)
+                pivot.put
+
         self.put()
-        for e in self.students:
-            if StudentAcct.StudentAcct.query().fetch().__contains__(e):
-                StudentAcct.StudentAcct.query(StudentAcct.email == e).fetch().courses.append(e.courseID)
 
-        return self.students
 
-    #If the email exists in the list, it is removed and the new list is returned
-    #Otherwise, None
-    def unenroll(self,email):
-        if self.students.__contains__(email):
-            self.students.remove(email)
-            self.put()
-            for e in self.students:
-                if StudentAcct.StudentAcct.query().fetch().__contains__(e):
-                    StudentAcct.StudentAcct.query(StudentAcct.email == e).fetch().courses.remove(e.courseID)
-            return self.students
-        else:
-            return None
+    #removes student with key "student" from the course
+    def unenroll(self,student):
+        tmp = StudentCourse.query(StudentCourse.student==student and StudentCourse.course==self.key)
+        tmp.key.delete()
