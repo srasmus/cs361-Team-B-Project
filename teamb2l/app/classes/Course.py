@@ -8,18 +8,16 @@ class Course(ndb.Model):
     name = ndb.StringProperty()
     teacher = ndb.KeyProperty(kind="User")
 
-    #Takes a TeacherAcct object and a name for the class
     #a unique class id is generated from the teacher's email and a random number
     #it makes sure the ID is unique
     #Then stores it in the datastore
     def makeCourse(self,teacher,name):
-        id = teacher.email+":"+str(random.randint(0,1000))
-        if teacher.courses.__contains__(id) == False:
-            tmp = Course(courseID = id, teacher = teacher.email, name = name, students = [])
-            tmp.put()
-            return tmp
+        id = teacher.get().email+":"+str(random.randint(0,1000))
+        if Course.query(Course.courseID == id).fetch():
+            Course.makeCourse(teacher, name)
         else:
-            Course.makeCourse(teacher,name)
+            tmp = Course(courseID=id, teacher=teacher, name=name)
+            return tmp
 
     #Takes a string of student emails, all separated by commas ","
     #It then merges the list of strings into the student list
