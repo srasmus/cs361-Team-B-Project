@@ -88,3 +88,7 @@ header {
     color: rgb(225, 196, 92);
     z-index: 1;
 }
+
+.course {
+    margin-top: 20px
+}
