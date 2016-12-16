@@ -8,11 +8,10 @@ from HTMLTestRunner import HTMLTestRunner
 from ..classes.User import User
 from ..classes.Course import Course
 from ..classes.StudentCourse import StudentCourse
-from ..classes.faq import FAQ
 
 import logging
 
-class Test_Course(unittest.TestCase):
+class Test_Student_Course(unittest.TestCase):
 
     def setUp(self):
         # First, create an instance of the Testbed class.
@@ -34,50 +33,31 @@ class Test_Course(unittest.TestCase):
 
         teacher = User(name="teacher", email="teacher@test.test", password="test1234", permission=1)
 
-        self.teacher_key = teacher.put()
+        teacher_key = teacher.put()
 
-        self.course = Course(courseID="cs123", name="Some Class")
+        course = Course(courseID="cs123", name="Some Class")
 
-        self.course.teacher = self.teacher_key
+        course.teacher = teacher_key
 
-        self.course.put()
+        self.course_key = course.put()
 
-        pivot = StudentCourse()
-        pivot.student = self.student_key
-        pivot.course = self.course.key
-        pivot.put()
+        self.pivot = StudentCourse()
+        self.pivot.student = self.student_key
+        self.pivot.course = self.course_key
+        self.pivot.put()
 
     def tearDown(self):
         self.testbed.deactivate()
 
-    def test_enroll(self):
-        student_key = User(name="test", email="test@test.test", password="1234", permission=0)
+    def test_get_student(self):
+        student = self.pivot.getStudent()
+        self.assertEquals(self.student_key, student.key)
 
-        student_key = student_key.put()
+    def test_get_course(self):
+        course = self.pivot.getCourse()
+        self.assertEquals(self.course_key, course.key)
 
-        self.assertEquals(len(self.course.getStudents()), 1)
 
-        self.course.enroll(student_key)
-
-        self.assertEquals(len(self.course.getStudents()), 2)
-
-    def test_unenroll(self):
-        self.assertEquals(len(self.course.getStudents()), 1)
-
-        self.course.unenroll(self.student_key)
-
-        self.assertEquals(len(self.course.getStudents()), 0)
-
-    def test_get_students(self):
-        self.assertEquals(len(self.course.getStudents()), 1)
-
-    def test_get_teacher(self):
-        teacher = self.course.getTeacher()
-        self.assertEquals(self.teacher_key.get(), teacher)
-
-    def test_get_faq(self):
-        faq = FAQ(question="test", answer="test", course=self.course_key)
-        faq_key = faq.put()
 
 if __name__ == '__main__':
     HTMLTestRunner.main()

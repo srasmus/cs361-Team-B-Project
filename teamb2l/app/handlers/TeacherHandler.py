@@ -92,15 +92,10 @@ class TeacherCourseHandler(webapp2.RequestHandler):
                 course.put()
             else:
                 name = self.request.get('name')
-                tmp = Course()
-                course = tmp.makeCourse(user_key,name)
-                #courses_count_after = Course.query(Course.teacher==user_key).count() + 1
+                course = Course(name=name, teacher=user.key)
+                courses_count_after = len(user.getCoursesTeacher()) + 1
                 course.put()
-                current_courses_count = Course.query(Course.teacher==user_key).count()
-
-                # NDB is stupid with addition lagg, so this will have to do...
-                #while(courses_count_after != current_courses_count):
-                 #   current_courses_count = Course.query(Course.teacher==user_key).count()
+                current_courses_count = len(user.getCoursesTeacher())
 
             self.redirect('/teacher/courses')
 

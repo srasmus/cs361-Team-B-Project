@@ -31,10 +31,9 @@
 
 	    <hr/>
 	    {% for course in courses %}
-	    	<div class="row">
-				{{course.courseID}}
+	    	<div class="row course">
 		    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2 classForm">
-		    		<input type="hidden" value={{ course.key.urlsafe() }}/>
+		    		<input type="hidden" value={{ course.key.urlsafe() }} name="course_key"/>
 	    			<div class="form-group">
 	    				<input type="text" class="form-control nameForm" name="name" placeholder="Course Name" value="{{ course.name }}"/>
 	    			</div>
