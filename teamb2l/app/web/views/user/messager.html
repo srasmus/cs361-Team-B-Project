@@ -2,14 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/base.css">
+        <meta charset="utf-8"/>
         <title>Mail</title>
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Droid+Sans">
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" type="text/css"
-              href="https://fonts.googleapis.com/css?family=Open+Sans">
-        <link rel="stylesheet" type="text/css" href="/teamb2l/app/web/assets/stylesheets/messager.css"/>        
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+        <link rel="stylesheet" type="text/css" href="/teamb2l/app/web/assets/stylesheets/messager.css"/>
     </head>
     <body>
         <div id="taskbar">
@@ -44,12 +43,7 @@
                 Nulla elementum, lacus vitae pulvinar hendrerit, lectus?
             </div>
             <div id="question">
-                <div class="personalMessage">
-                    Test message
-                </div>
-                <div class="otherMessage">
-                    Test message
-                </div>
+                {{ refresh() }}
             </div>
         </div>
         <div id="reply">
@@ -61,8 +55,7 @@
                     <option value="question3">Question 3</option>
                     <option value="question4">Question 4</option>
                 </select>
-                <input id="questionButton" type="button"
-                       value="Send FAQs Answer"/>
+                <input id="questionButton" type="button" value="Send FAQs Answer"/>
             </div>
             <div id="responseBox">
                 <textarea id="response" value=""></textarea>
