@@ -88,21 +88,19 @@ class TeacherCourseHandler(webapp2.RequestHandler):
             if self.request.get('course_key') != "":
                 course_key = ndb.Key(urlsafe=self.request.get('course_key'))
                 course = course_key.get()
-                course.courseID = self.request.get('courseID')
                 course.name = self.request.get('name')
                 course.put()
             else:
-                courseID = self.request.get('courseID')
                 name = self.request.get('name')
-                course = Course(courseID=courseID, name=name, teacher=user_key)
-
-                courses_count_after = Course.query(Course.teacher==user_key).count() + 1
+                tmp = Course()
+                course = tmp.makeCourse(user_key,name)
+                #courses_count_after = Course.query(Course.teacher==user_key).count() + 1
                 course.put()
                 current_courses_count = Course.query(Course.teacher==user_key).count()
 
                 # NDB is stupid with addition lagg, so this will have to do...
-                while(courses_count_after != current_courses_count):
-                    current_courses_count = Course.query(Course.teacher==user_key).count()
+                #while(courses_count_after != current_courses_count):
+                 #   current_courses_count = Course.query(Course.teacher==user_key).count()
 
             self.redirect('/teacher/courses')
 

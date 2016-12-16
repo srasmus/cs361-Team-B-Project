@@ -21,9 +21,6 @@
     	<div class="row">
 	    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2">
     			<div class="classForm">
-    				<div class="form-group">
-    					<input type="text" class="form-control courseIDForm" name="courseID" placeholder="Course ID"/>
-    				</div>
 	    			<div class="form-group">
 	    				<input type="text" class="form-control nameForm" name="name" placeholder="Course Name"/>
 	    			</div>
@@ -35,11 +32,9 @@
 	    <hr/>
 	    {% for course in courses %}
 	    	<div class="row">
+				{{course.courseID}}
 		    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2 classForm">
 		    		<input type="hidden" value={{ course.key.urlsafe() }}/>
-		    		<div class="form-group">
-	    				<input type="text" class="form-control courseIDForm" name="courseID" placeholder="Course ID" value="{{ course.courseID }}"/>
-	    			</div>
 	    			<div class="form-group">
 	    				<input type="text" class="form-control nameForm" name="name" placeholder="Course Name" value="{{ course.name }}"/>
 	    			</div>
