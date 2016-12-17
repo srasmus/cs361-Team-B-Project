@@ -18,13 +18,14 @@ class TeacherFAQHandler(webapp2.RequestHandler):
     def get(self):
         course_key = ndb.Key(urlsafe=self.request.get('course_key'))
         course = course_key.get()
-
+        test ="test"
         faqs = FAQ.query(FAQ.course==course_key)
-
+        list = course.getStudents()
         template = JINJA_ENVIRONMENT.get_template('/teacher/faq.html')
         self.response.write(template.render({
         	'faqs' : faqs, 
-        	'course': course
+        	'course': course,
+            'list':list
        	}))
     def post(self):
         course_key = ndb.Key(urlsafe=self.request.get('course_key'))
@@ -92,15 +93,10 @@ class TeacherCourseHandler(webapp2.RequestHandler):
                 course.put()
             else:
                 name = self.request.get('name')
-                tmp = Course()
-                course = tmp.makeCourse(user_key,name)
-                #courses_count_after = Course.query(Course.teacher==user_key).count() + 1
+                course = Course(name=name, teacher=user.key)
+                courses_count_after = len(user.getCoursesTeacher()) + 1
                 course.put()
-                current_courses_count = Course.query(Course.teacher==user_key).count()
-
-                # NDB is stupid with addition lagg, so this will have to do...
-                #while(courses_count_after != current_courses_count):
-                 #   current_courses_count = Course.query(Course.teacher==user_key).count()
+                current_courses_count = len(user.getCoursesTeacher())
 
             self.redirect('/teacher/courses')
 

@@ -4,7 +4,6 @@ import jinja2
 import logging
 from ..classes.User import User
 
-from ..classes.StudentAcct import StudentAcct
 from google.appengine.ext import ndb
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -41,9 +40,8 @@ class RegisterHandler(webapp2.RequestHandler):
 			self.response.write(template.render({'errors': ["Error: Passwords do not match"]}))
 		else:
 			if int(self.request.get('userType')) == 0:
-				user = StudentAcct()
+				user = User()
 				user.name = self.request.get('name')
-				user.courses = ["361", "362"]
 			else:
 				user = User()
 								
@@ -76,7 +74,7 @@ class LoginHandler(webapp2.RequestHandler):
 		user = User.query(User.email == email, User.password == password).get()
 		
 		if user == None:
-			user = StudentAcct.query(StudentAcct.email == email, StudentAcct.password == password).get()
+			user = User.query(User.email == email, User.password == password).get()
 		
 		if user == None:
 			template = JINJA_ENVIRONMENT.get_template('/auth/login.html')

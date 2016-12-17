@@ -21,8 +21,8 @@
          		<form action="/Inbox Student.html" method="post">
                     <div id="classes">
                     <select name="classes">
-                    {% for i in user.courses %}
-                    <option id="classes" value="{{ i }}">{{ i }}</option>
+                    {% for i in courses %}
+                    <option id="classes" value="{{ i.course }}">{{ i.course }}</option>
                     {%endfor%}
                     </select>
                     </div>

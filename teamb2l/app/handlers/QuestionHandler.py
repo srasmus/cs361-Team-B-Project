@@ -2,7 +2,7 @@ import webapp2
 import jinja2
 import os
 
-from app.classes.StudentAcct import StudentAcct
+from app.classes.User import User
 
 import main
 
