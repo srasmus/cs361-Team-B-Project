@@ -5,25 +5,25 @@ Created on Nov 8, 2016
 '''
 import unittest
 
-from ..classes.StudentAcct import StudentAcct
+from ..classes.User import User
 
 class StudentTest(unittest.TestCase):
     def setUp(self):
-        self.StudentAcct = StudentAcct()
+        self.StudentAcct = User()
 
     def tear(self):
         del self.StudentAcct
         
     def test_initial(self):
-        self.assertEqual(self.StudentAcct.firstName, "")
-        self.assertEqual(self.StudentAcct.lastName, "")       
-        self.assertEqual(self.StudentAcct.email, "")  
-        self.assertTrue(len(self.StudentAcct.courses) == 0)
+        self.assertEqual(self.User.firstName, "")
+        self.assertEqual(self.User.lastName, "")       
+        self.assertEqual(self.User.email, "")  
+        self.assertTrue(len(self.User.courses) == 0)
         
     def test_makeStudent(self):
         self.setUp()
-        self.StudentAcct.makeStudent("John", "Smith", "jsmith@uwm.edu", "12345")
-        for i in StudentAcct.query().fetch():
+        self.User.makeStudent("John", "Smith", "jsmith@uwm.edu", "12345")
+        for i in User.query().fetch():
             if i.email == "jsmith@uwm.edu":
                 tmp = i
         self.assertEqual(tmp.name, "Smith, John")

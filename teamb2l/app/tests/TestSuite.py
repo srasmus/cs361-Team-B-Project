@@ -1,6 +1,5 @@
 import unittest
 
-from ..classes.StudentAcct import StudentAcct
 from ..classes.TeacherAcct import TeacherAcct
 from ..classes.Course import Course
 from ..classes.User import User

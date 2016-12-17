@@ -2,8 +2,9 @@ import webapp2
 import jinja2
 import os
 import logging
-from ..classes.StudentAcct import StudentAcct
+
 from google.appengine.ext import ndb
+from app.classes.StudentCourse import StudentCourse
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
@@ -25,6 +26,7 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
+                    courses = StudentCourse.query(StudentCourse.student == user_key).fetch()
                     data = {"user":user}
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
                     self.response.write(template.render(data))
