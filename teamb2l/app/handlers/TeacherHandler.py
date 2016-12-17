@@ -18,13 +18,14 @@ class TeacherFAQHandler(webapp2.RequestHandler):
     def get(self):
         course_key = ndb.Key(urlsafe=self.request.get('course_key'))
         course = course_key.get()
-
+        test ="test"
         faqs = FAQ.query(FAQ.course==course_key)
-
+        list = course.getStudents()
         template = JINJA_ENVIRONMENT.get_template('/teacher/faq.html')
         self.response.write(template.render({
         	'faqs' : faqs, 
-        	'course': course
+        	'course': course,
+            'list':list
        	}))
     def post(self):
         course_key = ndb.Key(urlsafe=self.request.get('course_key'))

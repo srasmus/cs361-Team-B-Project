@@ -1,9 +1,9 @@
 import webapp2
 import jinja2
 import os
-
+from ..classes.Course import Course
 from app.classes.StudentAcct import StudentAcct
-
+from google.appengine.ext import ndb
 import main
 
 JINJA_ENVIRONMENT = jinja2.Environment(

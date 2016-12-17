@@ -1,7 +1,7 @@
 import webapp2
 import jinja2
 import os
-from teamb2l.app.classes import User
+from app.classes import User
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views', 'user')),
