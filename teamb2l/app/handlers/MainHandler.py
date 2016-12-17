@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
             if(user != None):
                 if user.permission == 0:
                     courses = StudentCourse.query(StudentCourse.student == user_key).fetch()
-                    data = {"user":user}
+                    data = {"courses":courses, "user":user}
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
                     self.response.write(template.render(data))
                 elif user.permission == 1:
