@@ -13,8 +13,8 @@ class Course(ndb.Model):
         student_query = StudentCourse.query(StudentCourse.course==self.key)
         students = []
         for query in student_query:
-           # student_key = query.student
-            students.append(student_key.get())
+            # student_key = query.student
+            students.append(query.student)
         return students
 
     def enroll(self,student_key):
