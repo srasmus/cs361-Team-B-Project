@@ -33,6 +33,7 @@ from app.handlers.TeacherHandler import *
 from app.handlers.AuthHandler import *
 from app.handlers.QuestionHandler import MessageHandler
 from app.handlers.CourseHandler import*
+from app.handlers.StudentFAQHandler import StudentFAQHandler
 
 #('/teacher/courses/students'), AddHandler),
 app = webapp2.WSGIApplication([
@@ -49,6 +50,7 @@ app = webapp2.WSGIApplication([
     ('/teachers', AdminHandler),
     ('/login', LoginHandler),
     ('/logout', LogoutHandler),
+    ('/student/faq', StudentFAQHandler),
     ('/register', RegisterHandler),
     ('/teacher/courses', TeacherCourseHandler),
     ('/teacher/courses/faq', TeacherFAQHandler),

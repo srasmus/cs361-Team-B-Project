@@ -28,15 +28,16 @@ class AddHandler(webapp2.RequestHandler):
         #for each name seperated by ","
         for name in list:
             c=0
-            #n =User(email = name)
-            #n.put()
+            n =User(email = name)
+            n.put()
             #check if name is already in the system
             if User.query(User.email == name).fetch():
                 c = c + 1
             #if name is already in the system then enroll
             if c>0:
                 student_key = User.query(User.email == name).fetch()
-                #course.enroll(student_key)
+                student_key = student_key[0].key
+                course.enroll(student_key)
                 self.redirect('/teacher/courses/faq?course_key=' + course_key.urlsafe())
             else:
                 #send out email
