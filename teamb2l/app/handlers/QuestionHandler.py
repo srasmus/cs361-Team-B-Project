@@ -1,18 +1,28 @@
-import webapp2
-import jinja2
-import os
+import Handler
+from google.appengine.ext import ndb
 
-from app.classes.User import User
 
-import main
+class QuestionHandler(Handler):
+    def get(self, question_id):
+        key = ndb.Key('Question', int(question_id))
+        question = key.get()
 
-JINJA_ENVIRONMENT = jinja2.Environment(
-loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'Mocs')),
-extensions=['jinja2.ext.autoescape'],
-autoescape=True)
+        if not question:
+            self.error(404)
+            return
 
-class QuestionHandler(webapp2.RequestHandler):
+        self.render("question.html")
+
+
+class NewQuestion(Handler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/Student Compose.html')
-        self.response.write(template.render())
-        
+        self.render("new_question.html")
+
+    def post(self):
+        subject = self.request.get("subject")
+        content = self.request.get("content")
+
+        if not subject or not content:
+            error = "Your question lacks a subject and/or content"
+            self.render("new_question.html", error=error)
+

@@ -31,7 +31,7 @@ from app.handlers.QuestionHandler import QuestionHandler
 from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
 from app.handlers.TeacherHandler import *
 from app.handlers.AuthHandler import *
-from app.handlers.MessagerHandler import MessageHandler
+from app.handlers.QuestionHandler import MessageHandler
 from app.handlers.CourseHandler import*
 
 #('/teacher/courses/students'), AddHandler),
