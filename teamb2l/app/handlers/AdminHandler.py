@@ -1,7 +1,6 @@
 import webapp2
 import jinja2
 import os
-from ..classes.TeacherAcct import TeacherAcct
 from ..classes.User import User
 from ..classes.Course import Course
 import logging

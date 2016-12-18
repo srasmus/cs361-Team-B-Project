@@ -22,7 +22,7 @@
                     <div id="classes">
                     <select name="classes">
                     {% for i in courses %}
-                    <option id="classes" value="{{ i.course }}">{{ i.course }}</option>
+                    <option id="classes" value="{{ i.course }}">{{ i.course.get().name }}</option>
                     {%endfor%}
                     </select>
                     </div>
