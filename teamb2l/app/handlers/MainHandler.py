@@ -37,7 +37,7 @@ class MainHandler(webapp2.RequestHandler):
                 else:
                     students = User.query(User.permission == 0).fetch()
                     courses = Course.query().fetch()
-                    data = {"courses":courses, "students":students, "user":user}
+                    data = {"courses":courses, "students":students, "user":user, "teachers":[]}
                     template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
                     self.response.write(template.render(data))
                 
