@@ -55,12 +55,12 @@
 <h1 id="inboxHeading">Courses</h1>
     <div id="inbox">
     	<div class="row">
-	    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2">
+	    	<form action="/teachers" method="POST" class="col-md-8 col-md-offset-2">
 
 	    			<div class="form-group">
-                    <select name="classes">
+                    <select name="deleteCourse">
                     {% for i in courses %}
-                    <option id="classes" value="{{ i.key }}">{{ i.name }}</option>
+                    <option id="classes" value="{{ i.courseID }}">{{ i.name }}</option>
                     {%endfor%}
 	    			</div>
 		    		<input type="submit" id="register" value="Delete Course"/>
@@ -76,7 +76,7 @@
 	    	Teacher<br>
             <select name="teacher">
                     {% for i in teachers %}
-                    <option id="classes" value="{{ i.name }}">{{ i.name }}</option>
+                    <option id="classes" value="{{ i.email }}">{{ i.name }}</option>
                     {%endfor%}
 	    			</div>
 			<input type="submit" value="Add Course" id="register"/>
