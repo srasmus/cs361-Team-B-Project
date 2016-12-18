@@ -18,11 +18,11 @@
         <h1 id="inboxHeading">CLASSES</h1>
        
             <div id="inbox">
-         		<form action="/Inbox Student.html" method="post">
+         		<form action="/student/faq" method="get">
                     <div id="classes">
                     <select name="classes">
                     {% for i in courses %}
-                    <option id="classes" value="{{ i.course }}">{{ i.course.get().name }}</option>
+                    <option id="classes" value= {{i.course}}>{{ i.course.get().name }}</option>
                     {%endfor%}
                     </select>
                     </div>
