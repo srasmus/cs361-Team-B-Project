@@ -10,7 +10,7 @@
 {% block content %}
 	<div id="taskbar">
         <header>Administration Page: {{user.name}}</header>
-            <a href="/login">
+            <a href="/logout">
                 <input id="login" type="button" value="Log Out"/>
             </a>     
         <a href="/">
@@ -24,18 +24,18 @@
     <h1 id="inboxHeading">Students</h1>
     <div id="inbox">
     	<div class="row">
-	    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2">
+	    	<form action="/teachers" method="post" class="col-md-8 col-md-offset-2">
 	    			<div class="form-group">
-                    <select name="classes">
+                    <select name="deleteUser">
                     {% for i in students %}
-                    <option id="classes" value="{{ i.name }}">{{ i.name }}</option>
+                    <option value="{{ i.email }}">{{ i.email }}</option>
                     {%endfor%}
 	    			</div>
 		    		<input type="submit" id="register" value="Delete Student"/>
 	    	<br></form>
 	    <form method="post">
 	    	<div class="form-group">
-			<input type="text" name="name" id="name" class="form-control" placeholder="Name"/>
+			<input type="text" name="studentName" id="name" class="form-control" placeholder="Name"/>
 			</div>
 			<div class="form-group">
 			<input type="email" name="email" id="email" class="form-control" placeholder="UWM Email"/>
@@ -60,7 +60,7 @@
 	    			<div class="form-group">
                     <select name="classes">
                     {% for i in courses %}
-                    <option id="classes" value="{{ i.name }}">{{ i.name }}</option>
+                    <option id="classes" value="{{ i.key }}">{{ i.name }}</option>
                     {%endfor%}
 	    			</div>
 		    		<input type="submit" id="register" value="Delete Course"/>
@@ -89,18 +89,18 @@
     <h1 id="inboxHeading">Teachers</h1>
     <div id="inbox">
     	<div class="row">
-	    	<form action="/teacher/courses" method="POST" class="col-md-8 col-md-offset-2">
+	    	<form action="/teachers" method="post" class="col-md-8 col-md-offset-2">
 	    			<div class="form-group">
-                    <select name="classes">
+                    <select name="deleteUser">
                     {% for i in teachers %}
-                    <option id="classes" value="{{ i.name }}">{{ i.name }}</option>
+                    <option id="classes" value="{{ i.email }}">{{ i.name }}</option>
                     {%endfor%}
 	    			</div>
 		    		<input type="submit" id="register" value="Delete Teacher"/>
 	    	<br></form>
 	    <form method="post">
 	    	<div class="form-group">
-			<input type="text" name="name" id="name" class="form-control" placeholder="Name"/>
+			<input type="text" name="teacherName" id="name" class="form-control" placeholder="Name"/>
 			</div>
 			<div class="form-group">
 			<input type="email" name="email" id="email" class="form-control" placeholder="UWM Email"/>
