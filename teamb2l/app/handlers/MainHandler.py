@@ -5,6 +5,8 @@ import logging
 
 from google.appengine.ext import ndb
 from app.classes.StudentCourse import StudentCourse
+from app.classes.User import User
+from app.classes.Course import Course
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
@@ -33,8 +35,11 @@ class MainHandler(webapp2.RequestHandler):
                 elif user.permission == 1:
                     self.redirect('/teacher/courses')
                 else:
+                    students = User.query(User.permission == 0).fetch()
+                    courses = Course.query().fetch()
+                    data = {"courses":courses, "students":students, "user":user}
                     template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
-                    self.response.write(template.render())
+                    self.response.write(template.render(data))
                 
             else:
                 self.redirect('/login')
