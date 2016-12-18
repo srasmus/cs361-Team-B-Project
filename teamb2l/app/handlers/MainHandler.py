@@ -32,14 +32,14 @@ class MainHandler(webapp2.RequestHandler):
                     data = {"courses":courses, "user":user}
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
                     self.response.write(template.render(data))
-                elif user.permission == 1:
-                    self.redirect('/teacher/courses')
                 else:
-                    students = User.query(User.permission == 0).fetch()
-                    courses = Course.query().fetch()
-                    data = {"courses":courses, "students":students, "user":user, "teachers":[]}
-                    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
-                    self.response.write(template.render(data))
+                    self.redirect('/teacher/courses')
+                #else:
+                #    students = User.query(User.permission == 0).fetch()
+                #    courses = Course.query().fetch()
+                #    data = {"courses":courses, "students":students, "user":user, "teachers":[]}
+                #    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
+                #    self.response.write(template.render(data))
                 
             else:
                 self.redirect('/login')

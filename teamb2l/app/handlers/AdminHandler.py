@@ -28,10 +28,22 @@ class AdminHandler(webapp2.RequestHandler):
         logging.info(self.request.cookies.get('user'))
         user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
         user = user_key.get()
-        teachers = User.query(User.permission == 1).fetch()
-        students = User.query(User.permission == 0).fetch()
-        
-        courses = Course.query().fetch()
-        data = {"courses":courses, "students":students, "user":user, "teachers":teachers}
-        template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
-        self.response.write(template.render(data))              
+        if user.permission != 2:
+            postMe = """
+<html>
+<head></head>
+    <body style="background-color:rgb(45, 45, 45);">
+    <center><font color="Gold" style="font-family:Montserrat;">
+     Permission Insufficient </font></center></body>
+    <meta http-equiv="refresh" content="2;url=/">
+</html>
+            """
+            self.response.write(postMe)
+        else:   
+            teachers = User.query(ndb.OR(User.permission == 2, User.permission == 1)).fetch()
+            students = User.query(User.permission == 0).fetch()        
+            courses = Course.query().fetch()
+            data = {"courses":courses, "students":students, "user":user, "teachers":teachers}
+            
+            template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
+            self.response.write(template.render(data))              
