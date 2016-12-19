@@ -1,14 +1,15 @@
 from Handler import Handler
 from ..classes.StudentCourse import StudentCourse
+from ..classes.Course import Course
 
 
 class NewQuestionHandler(Handler):
     def render_page(self, subject="", content="", error=""):
         user = self.request.cookies.get('user')
-        student_courses = StudentCourse.query(StudentCourse.student == user)
+        user_courses = StudentCourse.query(StudentCourse.student == user)
         courses = []
-        for student_course in student_courses:
-            courses.append(student_course)
+        for user_course in user_courses:
+            courses.append(user_course.course)
 
         self.render("user/new_question.html", subject=subject, content=content, error=error, courses=courses)
 

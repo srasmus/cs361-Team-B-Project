@@ -28,25 +28,19 @@ class SendHandler(webapp2.RequestHandler):
         for name in list:
             logging.info(name)
             c=0
-<<<<<<< HEAD
-=======
             n =User(email = name)
             n.put()
->>>>>>> 07c659cc5b9d04acb61541c8aab1ea4cb37e3efa
             #check if name is already in the system
             if User.query(User.email == name).fetch():
                 c = c + 1
             #if name is already in the system then enroll
             if c>0:
-<<<<<<< HEAD
                 student = User.query(User.email == name).fetch()
                 student =student[0]
                 course.enroll(student.key)
-=======
                 student_key = User.query(User.email == name).fetch()
                 student_key = student_key[0].key
                 course.enroll(student_key)
->>>>>>> 07c659cc5b9d04acb61541c8aab1ea4cb37e3efa
                 self.redirect('/teacher/courses/faq?course_key=' + course_key.urlsafe())
             else:
                 email = name

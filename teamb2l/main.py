@@ -54,11 +54,6 @@ app = webapp2.WSGIApplication([
     ('/teacher/courses/faq', TeacherFAQHandler),
     ('/teacher/courses/delete', CourseDeletionHandler),
     ('/teacher/courses/faq/delete', FAQDeletionHandler),
-<<<<<<< HEAD
-    ('/questions', MessageHandler),
     ('/teacher/courses/students', SendHandler),
-=======
-    ('/teacher/courses/students', AddHandler),
     ('/compose', NewQuestionHandler),
->>>>>>> 07c659cc5b9d04acb61541c8aab1ea4cb37e3efa
 ], debug=True)
