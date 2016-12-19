@@ -1,9 +1,9 @@
 from Handler import Handler
-from teamb2l.app.classes.StudentCourse import StudentCourse
+from ..classes.StudentCourse import StudentCourse
 
 
 class NewQuestionHandler(Handler):
-    def render_page(self, subject="", content="", courses="", error=""):
+    def render_page(self, subject="", content="", error=""):
         user = self.request.cookies.get('user')
         student_courses = StudentCourse.query(student=user)
         courses = []
