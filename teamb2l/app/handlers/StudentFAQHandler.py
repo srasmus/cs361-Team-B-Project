@@ -13,7 +13,8 @@ autoescape=True)
 
 class StudentFAQHandler(webapp2.RequestHandler):
     def get(self):
-        course = self.request.get('classes')
+        course = ndb.Key(urlsafe=self.request.get('classes'))
+
         faqs = FAQ.query(FAQ.course == course).fetch()
 
         template = JINJA_ENVIRONMENT.get_template('/Student FAQs.html')
