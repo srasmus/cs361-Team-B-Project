@@ -19,5 +19,5 @@ class StudentFAQHandler(webapp2.RequestHandler):
 
         template = JINJA_ENVIRONMENT.get_template('/Student FAQs.html')
         self.response.write(template.render({
-            'faqs':faqs
+            'faqs': faqs
         }))

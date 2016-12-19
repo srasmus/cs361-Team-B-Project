@@ -4,9 +4,6 @@ import os
 import jinja2
 import webapp2
 
-from google.appengine.ext import ndb
-from ..classes.User import*
-from ..classes.StudentCourse import*
 from ..classes.User import *
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -22,12 +19,11 @@ class MainHandler(webapp2.RequestHandler):
         if user_key == None:
             self.redirect('/login')
         else:
-            user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
-            user = user_key.get()
+            user = User.currentUser(self)
 
             if(user != None):
                 if user.permission == 0:
-                    courses = StudentCourse.query(StudentCourse.student == user_key).fetch()
+                    courses = User.getCoursesStudent(user)
                     data = {"courses":courses, "user":user}
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
                     self.response.write(template.render(data))
@@ -36,7 +32,7 @@ class MainHandler(webapp2.RequestHandler):
                 #else:
                 #    students = User.query(User.permission == 0).fetch()
                 #    courses = Course.query().fetch()
-                #    data = {"courses":courses, "students":students, "user":user, "teachers":[]}
+                #    data = {"courses":courses, "students":students, "question":question, "teachers":[]}
                 #    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
                 #    self.response.write(template.render(data))
                 

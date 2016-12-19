@@ -1,18 +1,15 @@
+import unittest
 
 from google.appengine.ext import ndb
 from google.appengine.ext import testbed
-from google.appengine.api import memcache
-import unittest
-from HTMLTestRunner import HTMLTestRunner
 
-from ..classes.User import User
+from ..tests.HTMLTestRunner import HTMLTestRunner
 from ..classes.Course import Course
 from ..classes.StudentCourse import StudentCourse
+from ..classes.User import User
 
-import logging
 
 class Test_User(unittest.TestCase):
-
     def setUp(self):
         # First, create an instance of the Testbed class.
         self.testbed = testbed.Testbed()
@@ -50,11 +47,10 @@ class Test_User(unittest.TestCase):
         self.testbed.deactivate()
 
     def test_get_courses_for_student(self):
-        self.assertEquals(len(self.student.getCoursesStudent()), 1)
+        self.assertEquals(self.student.getCoursesStudent().count(), 1)
 
     def test_get_courses_for_teacher(self):
         self.assertEquals(len(self.teacher.getCoursesTeacher()), 1)
-
 
 
 if __name__ == '__main__':

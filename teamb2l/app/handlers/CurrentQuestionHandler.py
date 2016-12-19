@@ -1,0 +1,2 @@
+class CurrentQuestionHandler:
+    type = ""

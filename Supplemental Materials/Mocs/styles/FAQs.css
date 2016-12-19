@@ -13,6 +13,14 @@ body {
     color: rgb(235, 235, 235);
 }
 
+#taskbar {
+    position:absolute;
+    height: 35px;
+    width: 100%;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(235, 235, 235);
+}
+
 header {
     margin: 0px 65px;
     float: left;
@@ -33,7 +41,6 @@ header {
     font-family: "Montserrat";
     font-size: 13px;
     color: rgb(225, 196, 92);
-    z-index: 1;
 }
 
 #mail {

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>New Question</title>
+<link rel="stylesheet" type="text/css" href="/teamb2l/app/web/assets/stylesheets/question.css"/>
+{% endblock %}}
+
+{% block content %}
+<div id="taskbar">
+    <header>Questions</header>
+    <a href="/logout">
+        <input id="login" type="button" value="Log out"/>
+    </a>
+    <a href="/">
+        <input id="faqs" type="button" value="FAQs"/>
+    </a>
+</div>
+{% block page %}
+{% endblock %}
+{% endblock %}

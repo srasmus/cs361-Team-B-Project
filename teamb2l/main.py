@@ -14,36 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License
 #
-import webapp2
-import random
-import os
-import urllib
-import jinja2
-import logging
-from google.appengine.ext import ndb
+
 
 # Handler Imports
 from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.StudentHandler import StudentHandler
-from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
 from app.handlers.TeacherHandler import *
 from app.handlers.AuthHandler import *
 from app.handlers.CourseHandler import*
 from app.handlers.StudentFAQHandler import StudentFAQHandler
 from app.handlers.NewQuestionHandler import NewQuestionHandler
+from app.handlers.CurrentQuestionHandler import CurrentQuestionHandler
+from app.handlers.QuestionsHandler import QuestionsHandler
 
-#('/teacher/courses/students'), AddHandler),
+
 app = webapp2.WSGIApplication([
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
-    ('/Inbox Student.html', StudentMailHandler),
-    ('/Inbox Teacher.html', TeacherMailHandler),
-    ('/Student Compose.html', StudentCompose),
-    ('/Teacher Compose.html', TeacherCompose),
-    ('/Dummy Mail Student.html', DummyStudent),
-    ('/Dummy Mail Teacher.html', DummyTeacher),
     ('/', MainHandler),
     ('/teachers', AdminHandler),
     ('/login', LoginHandler),
@@ -55,5 +44,7 @@ app = webapp2.WSGIApplication([
     ('/teacher/courses/delete', CourseDeletionHandler),
     ('/teacher/courses/faq/delete', FAQDeletionHandler),
     ('/teacher/courses/students', SendHandler),
-    ('/compose', NewQuestionHandler)
+    ('/questions/?', QuestionsHandler),
+    ('/questions/([0-9]+)', CurrentQuestionHandler),
+    ('/questions/new', NewQuestionHandler),
 ], debug=True)

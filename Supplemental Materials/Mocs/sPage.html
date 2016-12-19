@@ -5,28 +5,27 @@
         <title>CLASSES</title>
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" type="text/css" href="styles/Inbox.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/Inbox.css"/>        
     </head>
     <body>
         <div id="taskbar">
-            <header>Welcome {{user.email}} </header>
-            <a href="/login">
+            <header>Welcome</header>
+            <a href="/">
                 <input id="login" type="button" value="Log out"/>
             </a>
           
         </div>
         <h1 id="inboxHeading">CLASSES</h1>
+       
             <div id="inbox">
-         		<form action="/student/faq" method="get">
-                    <div id="classes">
+         		<form action="/Dummy Mail Student" method="post">
                     <select name="classes">
-                    {% for i in courses %}
-                    <option id="classes" value= {{i.course.urlsafe()}}>{{ i.course.get().name }}</option>
-                    {%endfor%}
                     </select>
-                    </div>
-                    <input type="submit" id="register">
+                    <input type="submit">
                 </form>
             </div>
+
+          
+
     </body>
 </html>

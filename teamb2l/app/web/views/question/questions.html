@@ -1,0 +1,24 @@
+{% extends "templates/QuestionTemplate.html" %}
+
+{% block page %}
+<div class="MainWindow">
+    {% for course in courses %}
+    <label>{course.name}</label>
+    {% for question in course %}
+    <form action="/question/{id}"></form>
+        <div class="QuestionBox">
+            <label>{question.subject}</label>
+            <form method="post">
+                <select value="Open">
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                    <option value="delete">Delete</option>
+                </select>
+                <input type="submit" value="Change Status">
+            </form>
+        </div>
+    </form>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}

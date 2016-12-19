@@ -41,19 +41,6 @@ header {
     color: rgb(225, 196, 92);
 }
 
-#faqs {
-    position: absolute;
-    right: 10.15%;
-    height: 35px;
-    width: 5%;
-    background-color: rgb(38, 38, 38);
-    border: 2px solid rgb(19, 19, 19);
-    border-radius: 5px;
-    font-family: "Montserrat", serif;
-    font-size: 13px;
-    color: rgb(225, 196, 92);
-}
-
 #inbox {
     position: absolute;
     left: 0;
