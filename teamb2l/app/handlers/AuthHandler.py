@@ -1,7 +1,14 @@
 import webapp2
+import os
+import jinja2
 import logging
 from ..classes.User import User
 from ..handlers.Handler import Handler
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 
 class RegisterHandler(Handler):
@@ -27,7 +34,7 @@ class RegisterHandler(Handler):
 
             logging.info(user)
 
-            if user is not None:
+            if user != None:
                 self.render_page(name=name, email=email, password=password, confirm_pass=confirm_pass,
                                  error="Email already taken")
             elif password != confirm_pass:
