@@ -13,8 +13,8 @@ class Course(ndb.Model):
         student_query = StudentCourse.query(StudentCourse.course==self.key)
         students = []
         for query in student_query:
-           # student_key = query.student
-            students.append(student_key.get())
+           student_key = query.student
+           students.append(student_key)
         return students
 
     def enroll(self,student_key):
@@ -26,7 +26,8 @@ class Course(ndb.Model):
     #removes student with key "student" from the course
     def unenroll(self,student_key):
         tmp = StudentCourse.query(StudentCourse.student==student_key and StudentCourse.course==self.key).fetch(1)
-        tmp[0].key.delete()
+        for n in tmp:
+            n.key.delete()
 
     def getTeacher(self):
         return self.teacher.get()

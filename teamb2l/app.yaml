@@ -1,5 +1,5 @@
 
-application: teamb2l
+application: chrome-lambda-146117
 version: 1
 runtime: python27
 api_version: 1

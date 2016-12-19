@@ -14,13 +14,12 @@ class User(ndb.Model):
 
 	def getCoursesStudent(self):
 		pivot_query = StudentCourse.query(StudentCourse.student==self.key)
-
 		courses = []
 		for pivot in pivot_query:
 			course = pivot.course.get()
 			courses.append(course)
 
-		return courses
+		return pivot_query
 
 	def getCoursesTeacher(self):
 		course_query = Course.query(Course.teacher==self.key)

@@ -4,7 +4,9 @@ import os
 import logging
 from ..classes.StudentAcct import StudentAcct
 from google.appengine.ext import ndb
-
+from ..classes.User import*
+from ..classes.StudentCourse import*
+from ..classes.User import *
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
 extensions=['jinja2.ext.autoescape'],
@@ -21,13 +23,30 @@ class MainHandler(webapp2.RequestHandler):
             user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
             user = user_key.get()
 
-            logging.info(user)
-
             if(user != None):
                 if user.permission == 0:
-                    data = {"user":user}
-                    template = JINJA_ENVIRONMENT.get_template('/sPage.html')
-                    self.response.write(template.render(data))
+                   list =[]
+                   course = []
+                   del course[:]
+
+                   student = User.query(User.email == user.email).fetch()
+
+                   if(len(student)>0):
+                       student = student[0].key
+                       pivot = StudentCourse.query(StudentCourse.student==student)
+                       ###############################USED TO DELETE ALL STUDENT KEYS
+                       #pivot = StudentCourse.query()
+                       #for p in pivot:
+                           #p.key.delete()
+                        ##############################
+                       list = StudentCourse.query()
+                       for p in pivot:
+                           #list.append(p)
+                           course.append(p.course.get())
+
+                   data = {"user":user, "student":course,"list":list}
+                   template = JINJA_ENVIRONMENT.get_template('/sPage.html')
+                   self.response.write(template.render(data))
                 elif user.permission == 1:
                     self.redirect('/teacher/courses')
                 else:
