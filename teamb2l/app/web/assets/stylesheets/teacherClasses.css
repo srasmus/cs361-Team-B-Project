@@ -106,3 +106,20 @@ header {
 .course {
     margin-top: 20px
 }
+
+.box {
+    margin: 20px;
+    padding: 40px 23px 15px;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 12px;
+    color: rgb(38, 38, 38);
+}
+
+.boxHeading {
+    margin: 100px 0px 0px;
+    font-family: "Montserrat";
+    font-size: 20px;
+    color: rgb(225, 196, 92);
+    text-align: center;
+}

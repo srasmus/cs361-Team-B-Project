@@ -3,6 +3,7 @@ import os
 import jinja2
 import logging
 from ..classes.User import User
+from ..handlers.Handler import Handler
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
@@ -10,42 +11,27 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-class RegisterHandler(webapp2.RequestHandler):
+class RegisterHandler(Handler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
-        self.response.write(template.render())
+        self.render('/auth/register.html')
 
     def post(self):
+        name = self.request.get('name')
         email = self.request.get('email')
         password = self.request.get('password')
         confirm_pass = self.request.get('confirm')
-        name = self.request.get('name')
 
         user = User.query(User.email == email).get()
 
         logging.info(user)
 
-        # if(question == None):
-        # 	question = User(email=email, password=password, permission=0)
-        # 	user_key = question.put()
-        # 	self.response.set_cookie('question', user_key.urlsafe())
-        # 	self.redirect('/')
-        # else:
-        # 	self.redirect('/')
         if user != None:
-            template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
-            self.response.write(template.render({'errors': ["Error:  Email already taken"]}))
+            self.render('/auth/register.html', errors="Error: Email already taken")
         elif password != confirm_pass:
-            template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
-            self.response.write(template.render({'errors': ["Error: Passwords do not match"]}))
+            self.render('/auth/register.html', errors="Passwords do not match")
         else:
-            if int(self.request.get('userType')) == 0:
-                user = User()
-                user.name = self.request.get('name')
-            else:
-                user = User()
+            user = User()
 
-            user.permission = int(self.request.get('userType'))
             user.email = email
             user.password = password
             user.name = name

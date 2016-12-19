@@ -4,10 +4,9 @@ import os
 import logging
 from google.appengine.ext import ndb
 
+from ..classes.User import User
 from ..classes.faq import FAQ
 from ..classes.Course import Course
-
-import main
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
@@ -66,12 +65,11 @@ class FAQDeletionHandler(webapp2.RequestHandler):
 
 class TeacherCourseHandler(webapp2.RequestHandler):
     def get(self):
-        user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
-        user = user_key.get()
+        user = User.currentUser(self)
         if user.permission == 0:
             self.redirect('/')
         else:
-            courses = Course.query(Course.teacher==user_key)
+            courses = User.getCoursesTeacher(user)
             for course in courses:
                 logging.info("GETTING COURSES")
                 logging.info(course)
