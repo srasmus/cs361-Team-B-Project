@@ -24,7 +24,6 @@ class RegisterHandler(webapp2.RequestHandler):
 		user = User.query(User.email == email).get()
 
 		logging.info(user)
-
 		# if(user == None):
 		# 	user = User(email=email, password=password, permission=0)
 		# 	user_key = user.put()
@@ -32,9 +31,30 @@ class RegisterHandler(webapp2.RequestHandler):
 		# 	self.redirect('/')
 		# else:
 		# 	self.redirect('/')
+
+
+
 		if user != None:
-			template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
-			self.response.write(template.render({'errors': ["Error:  Email already taken"]}))
+			if user.name == None:
+				user.password = password
+				user.name = name
+				user.permission = 0
+				user_key = user.put()
+				self.response.set_cookie('user', user_key.urlsafe())
+				postMe = """
+				<html>
+				<head></head>
+					<body style="background-color:rgb(45, 45, 45);">
+					<center><img src="/assets/giphy.gif" alt="Check"><br>
+					<font color="Gold" style="font-family:Montserrat;">
+					 Registration Successful </font></center></body>
+					<meta http-equiv="refresh" content="2;url=/">
+				</html>
+							"""
+				self.response.write(postMe)
+			else:
+				template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
+				self.response.write(template.render({'errors': ["Error:  Email already taken"]}))
 		elif password != confirm_pass:
 			template = JINJA_ENVIRONMENT.get_template('/auth/register.html')
 			self.response.write(template.render({'errors': ["Error: Passwords do not match"]}))

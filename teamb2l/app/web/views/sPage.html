@@ -15,18 +15,20 @@
             </a>
           
         </div>
-        <h1 id="inboxHeading">CLASSES</h1>
+          <h1 id="inboxHeading">CLASSES</h1>
             <div id="inbox">
-         		<form action="/student/faq" method="get">
+         		<form action="/Inbox Student.html" method="post">
                     <div id="classes">
                     <select name="classes">
-                    {% for i in courses %}
-                    <option id="classes" value= {{i.course.urlsafe()}}>{{ i.course.get().name }}</option>
+                    {% for student in student %}
+                    <option id="classes" value="{{ student.name}}">{{ student.name }}</option>
                     {%endfor%}
                     </select>
                     </div>
                     <input type="submit" id="register">
                 </form>
             </div>
+
+         
     </body>
 </html>

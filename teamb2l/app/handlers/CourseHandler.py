@@ -38,20 +38,23 @@ class SendHandler(webapp2.RequestHandler):
                 student = User.query(User.email == name).fetch()
                 student =student[0]
                 course.enroll(student.key)
+
                 self.redirect('/teacher/courses/faq?course_key=' + course_key.urlsafe())
             else:
                 email = name
-                #send out email
+                # send out email
                 n = User(email=email)
                 n.put()
                 sender = 'Teacher@{}.appspotmail.com'.format(app_identity.get_application_id())
                 to_address = name
                 subject = "Register for Teamb2L."
                 body = """Click on the link below to register.
-                       https://chrome-lambda-146117.appspot.com/register?"""
+                                      https://chrome-lambda-146117.appspot.com/register?"""
                 mail.send_mail(sender, to_address, subject, body)
                 self.redirect('/teacher/courses')
 
+                course.enroll(n.key)
+                self.redirect('/teacher/courses/faq?course_key=' + course_key.urlsafe())
 
 
 
