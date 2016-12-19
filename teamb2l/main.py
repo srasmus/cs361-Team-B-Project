@@ -36,7 +36,6 @@ from app.handlers.NewQuestionHandler import NewQuestionHandler
 
 #('/teacher/courses/students'), AddHandler),
 app = webapp2.WSGIApplication([
-    ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     ('/Inbox Student.html', StudentMailHandler),
     ('/Inbox Teacher.html', TeacherMailHandler),
@@ -48,6 +47,7 @@ app = webapp2.WSGIApplication([
     ('/teachers', AdminHandler),
     ('/login', LoginHandler),
     ('/logout', LogoutHandler),
+    ('/student/courses', StudentHandler),
     ('/student/faq', StudentFAQHandler),
     ('/register', RegisterHandler),
     ('/teacher/courses', TeacherCourseHandler),

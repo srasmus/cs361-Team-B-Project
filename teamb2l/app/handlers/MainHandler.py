@@ -27,36 +27,8 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
-                    list = []
-                    course = []
-                    del course[:]
-
-                    student = User.query(User.email == user.email).fetch()
-
-                    if (len(student) > 0):
-                        student = student[0].key
-                        pivot = StudentCourse.query(StudentCourse.student == student)
-                        ###############################USED TO DELETE ALL STUDENT KEYS
-                        # pivot = StudentCourse.query()
-                        # for p in pivot:
-                        # p.key.delete()
-                        ##############################
-                        list = StudentCourse.query()
-                        for p in pivot:
-                            # list.append(p)
-                            course.append(p.course.get())
-
-                    data = {"user": user, "student": course}
-                    template = JINJA_ENVIRONMENT.get_template('/sPage.html')
-                    self.response.write(template.render(data))
+                    self.redirect('/student/courses')
                 else:
                     self.redirect('/teacher/courses')
-                #else:
-                #    students = User.query(User.permission == 0).fetch()
-                #    courses = Course.query().fetch()
-                #    data = {"courses":courses, "students":students, "user":user, "teachers":[]}
-                #    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
-                #    self.response.write(template.render(data))
-                
             else:
                 self.redirect('/login')

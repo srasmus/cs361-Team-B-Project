@@ -19,7 +19,7 @@ class User(ndb.Model):
 			course = pivot.course.get()
 			courses.append(course)
 
-		return pivot_query
+		return courses
 
 	def getCoursesTeacher(self):
 		course_query = Course.query(Course.teacher==self.key)
