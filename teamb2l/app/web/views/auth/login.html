@@ -11,12 +11,9 @@
     </h1>
     <form action="/login" method="post" id="loginForm">
         <div class="error"> {{error}}<br> </div>
-        <input type="email" class="smallTextField" id="email" name="email" placeholder="Email"
-               {% if {email} != "" %}
-               value="{email}"
-               {% endif %}>
+        <input type="email" class="textField" id="email" name="email" placeholder="Email">
         <br/>
-        <input type="password" class="smallTextField" id="password" name="password" placeholder="Password" value="{email}">
+        <input type="password" class="textField" id="password" name="password" placeholder="Password">
         <br/>
         <button type="submit" id="loginButton">
             Log in to B2L
