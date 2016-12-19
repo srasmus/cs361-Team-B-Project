@@ -5,12 +5,12 @@ from ..classes.StudentCourse import StudentCourse
 class NewQuestionHandler(Handler):
     def render_page(self, subject="", content="", error=""):
         user = self.request.cookies.get('user')
-        student_courses = StudentCourse.query(student=user)
+        student_courses = StudentCourse.query(StudentCourse.student == user)
         courses = []
         for student_course in student_courses:
             courses.append(student_course)
 
-        self.render("user/new_question.html", subject=subject, content=content, error=error, student=user, courses=courses)
+        self.render("user/new_question.html", subject=subject, content=content, error=error, courses=courses)
 
     def get(self):
         self.render_page()
