@@ -2,6 +2,11 @@
 
 
 {% block head %}
+    <title>TeamB2L Login</title>
+    <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Droid+Sans">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/login.css"/>
 {% endblock %}
 
@@ -10,7 +15,9 @@
         <img src="/assets/Logo.png" alt="TeamB2L">
     </h1>
     <form action="/login" method="post" id="loginForm">
-        <div class="error"> {{error}}<br> </div>
+        {% for error in errors%}
+            <div id="error"> {{error}}<br> </div>
+        {% endfor %}
         <input type="email" class="textField" id="email" name="email" placeholder="Email">
         <br/>
         <input type="password" class="textField" id="password" name="password" placeholder="Password">

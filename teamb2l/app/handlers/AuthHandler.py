@@ -44,19 +44,16 @@ class RegisterHandler(Handler):
                         <meta http-equiv="refresh" content="2;url=/">"""
             self.response.write(postMe)
 
-class LoginHandler(Handler):
+class LoginHandler(webapp2.RequestHandler):
     def get(self):
-        user = User.currentUser(self)
-        if user is not None:
-            self.redirect("/logout")
-        self.render('/auth/login.html')
+        template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
+        self.response.write(template.render())
 
     def post(self):
         email = self.request.get('email')
         password = self.request.get('password')
         user = User.query(User.email == email, User.password == password).get()
 
-        #hardcoded admin for testing and demos
         if email == "hmccringleberry@uwm.edu" and password == "1234" and not user:
             user = User()
             user.name = "Hingle McCringleberry"
@@ -65,20 +62,12 @@ class LoginHandler(Handler):
             user.permission = 2
             user.put()
 
-        #hardcoded student for testing and demos
-        elif email == "jdoe@mail.mail" and password == "1234" and not user:
-            user = User()
-            user.name = "John Doe"
-            user.email = email
-            user.password = password
-            user.permission = 0
-            user.put()
-
         if user == None:
             user = User.query(User.email == email, User.password == password).get()
 
         if user == None:
-            self.render('/auth/login.html', error="Invalid Email or Password.")
+            template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
+            self.response.write(template.render({'errors': ["Error:  Invalid Email or Password."]}))
         else:
             self.response.set_cookie('user', user.key.urlsafe())
             self.redirect('/')
