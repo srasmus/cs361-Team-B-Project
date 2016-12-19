@@ -1,7 +1,7 @@
 from google.appengine.ext import ndb
 
 
-class Question(ndb.model):
+class Question(ndb.Model):
     student = ndb.StringProperty(required=True)
     course = ndb.StringProperty(required=True)
     subject = ndb.StringProperty(required=True)

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Question</title>
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Open+Sans">
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/question.css"/>
+    </head>
+    <body>
+        <div id="taskbar">
+            <header>Questions</header>
+            <form action="/logout" method="get" id="loginForm">
+                <input id="login" type="submit" value="Log out"/>
+            </form>
+            <form action="/" method="get">
+                <input id="faqs" type="submit" value="Home"/>
+            </form>
+        </div>
+        <div id="inbox">
+            <h1 id="inboxHeading">Inbox</h1>
+            {% if user.permission == 0 %}
+            <form action="/question/new" method="get">
+                <input class="mail" id="compose" type="submit" value="Ask a question"/>
+            </form>
+            {% endif %}
+            {% for course in courses %}
+            <h2 class="subHeading">{{ course }}</h2>
+            {% set questions = Questions.query(Questions.course == course) %}
+                {% for question in questions %}
+                <form action="/question/{{ question.key() }}">
+                    <input class="mail" type="button" value="{{ question.subject }}"/>
+                </form>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

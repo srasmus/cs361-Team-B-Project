@@ -30,9 +30,9 @@ from app.handlers.StudentHandler import StudentHandler
 from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
 from app.handlers.TeacherHandler import *
 from app.handlers.AuthHandler import *
-from app.handlers.CourseHandler import*
+from app.handlers.CourseHandler import *
 from app.handlers.StudentFAQHandler import StudentFAQHandler
-from app.handlers.NewQuestionHandler import NewQuestionHandler
+from app.handlers.QuestionHandler import InboxHandler, NewQuestionHandler
 
 #('/teacher/courses/students'), AddHandler),
 app = webapp2.WSGIApplication([
@@ -55,5 +55,6 @@ app = webapp2.WSGIApplication([
     ('/teacher/courses/delete', CourseDeletionHandler),
     ('/teacher/courses/faq/delete', FAQDeletionHandler),
     ('/teacher/courses/students', SendHandler),
-    ('/compose', NewQuestionHandler)
+    ('/question/inbox', InboxHandler),
+    ('/question/new', NewQuestionHandler),
 ], debug=True)

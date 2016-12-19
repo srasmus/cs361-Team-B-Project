@@ -1,0 +1,25 @@
+{% extends "/question/question_base.html" %}
+
+{% block head %}
+<title>New Question</title>
+{% endblock %}}
+
+{% block content %}
+<div id="reply">
+    <form method="post">
+        <div id="replySubjectBar">
+            <input id="replySubject" type="text" value="{{ subject }}" placeholder="Subject:">
+        <select value="course" id="dropdown" value="{{ course }}">
+            {% for course in courses %}
+                <option value="{{ course }}">{{ course }}</option>
+            {% endfor %}
+        </select>
+        <input id="send" type="submit" value="Send"/>
+        </div>
+        <div id="responseBox">
+            <textarea id="response" value="content">{{content}}</textarea>
+        </div>
+        <div class="error">{{error}}</div>
+    </form>
+</div>
+{% endblock %}
