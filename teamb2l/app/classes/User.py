@@ -42,5 +42,7 @@ class User(ndb.Model):
 
     @staticmethod
     def currentUser(self):
-        user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
-        return user_key.get()
+        user_key = self.request.cookies.get('user')
+        if user_key is not None:
+            user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
+            return user_key.get()
