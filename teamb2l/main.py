@@ -33,7 +33,7 @@ from app.handlers.QuestionsHandler import QuestionsHandler
 app = webapp2.WSGIApplication([
     ('/test', TestHandler),
     ('/', MainHandler),
-    ('/teachers', AdminHandler),
+    ('/admin', AdminHandler),
     ('/login', LoginHandler),
     ('/logout', LogoutHandler),
     ('/student/courses', StudentHandler),

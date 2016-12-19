@@ -56,11 +56,14 @@ class RegisterHandler(Handler):
                 self.response.write(postMe)
 
 class LoginHandler(Handler):
+    def render_page(self, email="", password="", error=""):
+        self.render('/auth/login.html', email=email, password=password, error=error)
+
     def get(self):
         user = User.currentUser(self)
         if user is not None:
             self.redirect("/logout")
-        self.render('/auth/login.html')
+        self.render_page()
 
     def post(self):
         email = self.request.get('email')
@@ -89,7 +92,7 @@ class LoginHandler(Handler):
             user = User.query(User.email == email, User.password == password).get()
 
         if user == None:
-            self.render('/auth/login.html', error="Invalid Email or Password.")
+            self.render_page(email=email, password=password, error="Invalid Email or Password.")
         else:
             self.response.set_cookie('user', user.key.urlsafe())
             self.redirect('/')

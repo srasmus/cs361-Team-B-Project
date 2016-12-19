@@ -11,22 +11,22 @@
 		<div class="error"> {{error}}<br> </div>
 		<input type="text" name="name" id="name" class="smallTextField" placeholder="Name"
 			   {% if name != "" %}
-			   value="{name}"
+			   value="{{name}}"
 			   {% endif %}/>
 		<br>
 		<input type="email" name="email" id="email" class="smallTextField" placeholder="UWM Email"
 			   {% if email != "" %}
-			   value="{email}"
+			   value="{{email}}"
 			   {% endif %}/>
 		<br>
 		<input type="password" name="password" id="password" class="smallTextField" placeholder="Password"
 				{% if password != "" %}
-				value="{password}"
+				value="{{password}}"
 				{% endif %}/>
 		<br>
 		<input type="password" name="confirm" id="confirm" class="smallTextField" placeholder="Confirm Password"
 				{% if confirm_pass != "" %}
-				value="{confirm_pass}"
+				value="{{confirm_pass}}"
 				{% endif %}/>
 		<br>
 				
