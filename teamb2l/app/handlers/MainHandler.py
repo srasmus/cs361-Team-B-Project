@@ -4,8 +4,10 @@ import os
 import jinja2
 import webapp2
 
+from google.appengine.ext import ndb
+from ..classes.User import*
+from ..classes.StudentCourse import*
 from ..classes.User import *
-from ..classes.User import User
 
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
@@ -25,30 +27,6 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
-                   list =[]
-                   course = []
-                   del course[:]
-
-                   student = User.query(User.email == user.email).fetch()
-
-                   if(len(student)>0):
-                       student = student[0].key
-                       pivot = StudentCourse.query(StudentCourse.student==student)
-                       ###############################USED TO DELETE ALL STUDENT KEYS
-                       #pivot = StudentCourse.query()
-                       #for p in pivot:
-                           #p.key.delete()
-                        ##############################
-                       list = StudentCourse.query()
-                       for p in pivot:
-                           #list.append(p)
-                           course.append(p.course.get())
-
-                   data = {"user":user, "student":course,"list":list}
-                   template = JINJA_ENVIRONMENT.get_template('/sPage.html')
-                   self.response.write(template.render(data))
-                elif user.permission == 1:
-                    self.redirect('/teacher/courses')
                     courses = StudentCourse.query(StudentCourse.student == user_key).fetch()
                     data = {"courses":courses, "user":user}
                     template = JINJA_ENVIRONMENT.get_template('/sPage.html')
