@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+    <meta charset="utf-8"/>
+    <title>FAQs</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Droid+Sans">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/FAQs.css"/> 
+{% endblock %}
+
+
+{% block content %}
+
+<div id="taskbar">
+    <header>Frequently Asked Questions</header>
+    <form action="/logout" method="post" id="loginForm">
+        <button id="login" type="submit" value="Log out">Log out
+        </button>
+    </form>
+    <a href="/Inbox Student.html">
+        <input id="mail" type="button" value="Mail"/>
+    </a>
+</div>
+<h1 id="heading">
+    It's easier to get a 4.0 when you have all the answers
+</h1>
+<div id="questions">
+    <h4>Get simple answers to the most frequently asked questions.</h4>
+</div>
+
+<div id="answers">
+    {% for faq in faqs %}
+        <div class="answersBar">
+            <div class="questionRepeat">
+                {{ faq.question }}
+            </div>
+            <input class="backToTop" type="button"onclick="location.href='#taskbar'" value="Back to top"/>
+        </div>
+        <div class="answers">
+           {{ faq.answer }}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
