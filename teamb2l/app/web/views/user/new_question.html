@@ -18,9 +18,9 @@
 
     <label>
         <div>Course</div>
-        <select>
+        <select value="{{course}}">
             {% for course in courses %}
-            <option value="{{course}}">{{course}}</option>
+            <option value="{{cur_course}}">{{courses}}</option>
             {% endfor %}
         </select>
     </label>
