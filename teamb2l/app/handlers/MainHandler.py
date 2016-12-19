@@ -2,11 +2,18 @@ import webapp2
 import jinja2
 import os
 import logging
-from ..classes.StudentAcct import StudentAcct
+
 from google.appengine.ext import ndb
+<<<<<<< HEAD
 from ..classes.User import*
 from ..classes.StudentCourse import*
 from ..classes.User import *
+=======
+from app.classes.StudentCourse import StudentCourse
+from app.classes.User import User
+from app.classes.Course import Course
+
+>>>>>>> 07c659cc5b9d04acb61541c8aab1ea4cb37e3efa
 JINJA_ENVIRONMENT = jinja2.Environment(
 loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'web', 'views')),
 extensions=['jinja2.ext.autoescape'],
@@ -25,6 +32,7 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
+<<<<<<< HEAD
                    list =[]
                    course = []
                    del course[:]
@@ -49,9 +57,20 @@ class MainHandler(webapp2.RequestHandler):
                    self.response.write(template.render(data))
                 elif user.permission == 1:
                     self.redirect('/teacher/courses')
+=======
+                    courses = StudentCourse.query(StudentCourse.student == user_key).fetch()
+                    data = {"courses":courses, "user":user}
+                    template = JINJA_ENVIRONMENT.get_template('/sPage.html')
+                    self.response.write(template.render(data))
+>>>>>>> 07c659cc5b9d04acb61541c8aab1ea4cb37e3efa
                 else:
-                    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
-                    self.response.write(template.render())
+                    self.redirect('/teacher/courses')
+                #else:
+                #    students = User.query(User.permission == 0).fetch()
+                #    courses = Course.query().fetch()
+                #    data = {"courses":courses, "students":students, "user":user, "teachers":[]}
+                #    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
+                #    self.response.write(template.render(data))
                 
             else:
                 self.redirect('/login')

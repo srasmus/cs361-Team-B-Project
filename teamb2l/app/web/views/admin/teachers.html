@@ -1,35 +1,117 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
+
+{% block head %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="/assets/stylesheets/teacherClasses.css" type="text/css">
+	       <link rel="stylesheet" type="text/css" href="styles/Inbox.css"/>        
+	<title>TeamB2L</title>
+{% endblock %}
+
 {% block content %}
-	<div class="col-md-10 col-md-offset-1">
-		<h1>
-			Teachers
-			<a class="btn btn-success pull-right" href="">Add New Teacher</a>
-		</h1>
-		<div class="col-md-8 col-md-offset-2">
-			{% if count != 0 %}
-				<table class="table table-striped">
-					<tr>
-						<th class="col-md-3">Name</th>
-						<th class="col-md-3">Email</th>
-						<th class="col-md-2">Admin</th>
-						<th class="col-md-4">Actions</th>
-					</tr>
-					{% for teacher in teachers %}
-						<tr>
-							<td>{{ teacher.name }}</td>
-							<td>{{ teacher.email }}</td>
-							<td>{% if teacher.admin %} Yes {% else %} No {% endif %}</td>
-							<td>
-								<div class="btn-group">
-									<a class="btn btn-danger" href="">Delete</a>
-								</div>
-							</td>
-						</tr>
-					{% endfor %}
-				</table>
-			{% else %}
-				No teachers yet in this system (somehow...)
-			{% endif %}
-		</div>
-	</div>
+	<div id="taskbar">
+        <header>Administration Page: {{user.name}}</header>
+            <a href="/logout">
+                <input id="login" type="button" value="Log Out"/>
+            </a>     
+        <a href="/">
+            <input id="mail" type="button" value="Home"/>
+        </a>
+    </div>
+    <table>
+    
+    	<tr>
+    <td>
+    <h1 id="inboxHeading">Students</h1>
+    <div id="inbox">
+    	<div class="row">
+	    	<form action="/teachers" method="post" class="col-md-8 col-md-offset-2">
+	    			<div class="form-group">
+                    <select name="deleteUser">
+                    {% for i in students %}
+                    <option value="{{ i.email }}">{{ i.email }}</option>
+                    {%endfor%}
+	    			</div>
+		    		<input type="submit" id="register" value="Delete Student"/>
+	    	<br></form>
+	    <form method="post">
+	    	<div class="form-group">
+			<input type="text" name="studentName" id="name" class="form-control" placeholder="Name"/>
+			</div>
+			<div class="form-group">
+			<input type="email" name="email" id="email" class="form-control" placeholder="UWM Email"/>
+			</div>
+			<div class="form-group">
+			<input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+			</div>
+			<div class="form-group">
+			<input type="password" name="confirm" id="confirm" class="form-control" placeholder="Confirm Password"/>
+			</div>
+			<input type="submit" value="Add Student" id="register"/>
+		</form>
+	    </div>
+</td>
+
+<td>
+<h1 id="inboxHeading">Courses</h1>
+    <div id="inbox">
+    	<div class="row">
+	    	<form action="/teachers" method="POST" class="col-md-8 col-md-offset-2">
+
+	    			<div class="form-group">
+                    <select name="deleteCourse">
+                    {% for i in courses %}
+                    <option id="classes" value="{{ i.courseID }}">{{ i.name }}</option>
+                    {%endfor%}
+	    			</div>
+		    		<input type="submit" id="register" value="Delete Course"/>
+	    	</form>
+	    <form method="post">
+	    	<div class="form-group">
+			<input type="text" name="courseID" id="name" class="form-control" placeholder="Course ID"/>
+			</div>
+			<div class="form-group">
+			<input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name"/>
+			</div>
+	    	<div class="form-group">
+	    	Teacher<br>
+            <select name="teacher">
+                    {% for i in teachers %}
+                    <option id="classes" value="{{ i.email }}">{{ i.name }}</option>
+                    {%endfor%}
+	    			</div>
+			<input type="submit" value="Add Course" id="register"/>
+		</form>
+	    </div>
+    </div>
+    </td>
+    </tr>
+    </table>
+    <h1 id="inboxHeading">Teachers</h1>
+    <div id="inbox">
+    	<div class="row">
+	    	<form action="/teachers" method="post" class="col-md-8 col-md-offset-2">
+	    			<div class="form-group">
+                    <select name="deleteUser">
+                    {% for i in teachers %}
+                    <option id="classes" value="{{ i.email }}">{{ i.name }}</option>
+                    {%endfor%}
+	    			</div>
+		    		<input type="submit" id="register" value="Delete Teacher"/>
+	    	<br></form>
+	    <form method="post">
+	    	<div class="form-group">
+			<input type="text" name="teacherName" id="name" class="form-control" placeholder="Name"/>
+			</div>
+			<div class="form-group">
+			<input type="email" name="email" id="email" class="form-control" placeholder="UWM Email"/>
+			</div>
+			<div class="form-group">
+			<input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+			</div>
+			<div class="form-group">
+			<input type="password" name="confirm" id="confirm" class="form-control" placeholder="Confirm Password"/>
+			</div>
+			<input type="submit" value="Add Teacher" id="register"/>
+		</form>
+	    </div>
 {% endblock %}

@@ -76,7 +76,8 @@ class Test_Course(unittest.TestCase):
         self.assertEquals(self.teacher_key.get(), teacher)
 
     def test_get_faq(self):
-        faq = FAQ(question="test", answer="test", course=self.course_key)
+        
+        faq = FAQ(question="test", answer="test", course = self.course.key)
         faq_key = faq.put()
 
 if __name__ == '__main__':

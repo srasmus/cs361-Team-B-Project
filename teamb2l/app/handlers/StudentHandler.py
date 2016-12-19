@@ -2,7 +2,7 @@ import webapp2
 import jinja2
 import os
 from ..classes.Course import Course
-from app.classes.StudentAcct import StudentAcct
+
 from google.appengine.ext import ndb
 import main
 
@@ -20,8 +20,10 @@ class StudentHandler(webapp2.RequestHandler):
             postMe = """
 <html>
 <head></head>
-    <body> Going Home </body>
-    <meta http-equiv="refresh" content="1;url=/">
+    <body style="background-color:rgb(45, 45, 45);">
+    <center><font color="Gold" style="font-family:Montserrat;">
+     Going Home</font></center></body>
+    <meta http-equiv="refresh" content="2;url=/">
 </html>
             """
             self.response.write(postMe)

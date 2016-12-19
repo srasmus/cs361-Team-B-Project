@@ -30,3 +30,11 @@ class User(ndb.Model):
 			courses.append(course)
 
 		return courses
+	
+	def makeStudent(self, firstName, lastName, email, password):
+		tmplist = []
+		"""for i in Course.Course.query().fetch():
+			if(i.students.contains(self.email)):
+				tmplist.append(i.courseID)"""
+		tmp = User(name = str(lastName+", "+firstName), email = email,password = password,courses = tmplist)
+		tmp.put()

@@ -27,18 +27,17 @@ from app.handlers.MainHandler import MainHandler
 from app.handlers.TestHandler import TestHandler
 from app.handlers.AdminHandler import AdminHandler
 from app.handlers.StudentHandler import StudentHandler
-from app.handlers.QuestionHandler import QuestionHandler
 from app.handlers.MailHandler import StudentMailHandler, TeacherMailHandler, StudentCompose, TeacherCompose, DummyStudent, DummyTeacher
 from app.handlers.TeacherHandler import *
 from app.handlers.AuthHandler import *
-from app.handlers.MessagerHandler import MessageHandler
 from app.handlers.CourseHandler import*
+from app.handlers.StudentFAQHandler import StudentFAQHandler
+from app.handlers.NewQuestionHandler import NewQuestionHandler
 
 #('/teacher/courses/students'), AddHandler),
 app = webapp2.WSGIApplication([
     ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
-    ('/Student Compose.html', QuestionHandler),
     ('/Inbox Student.html', StudentMailHandler),
     ('/Inbox Teacher.html', TeacherMailHandler),
     ('/Student Compose.html', StudentCompose),
@@ -49,11 +48,17 @@ app = webapp2.WSGIApplication([
     ('/teachers', AdminHandler),
     ('/login', LoginHandler),
     ('/logout', LogoutHandler),
+    ('/student/faq', StudentFAQHandler),
     ('/register', RegisterHandler),
     ('/teacher/courses', TeacherCourseHandler),
     ('/teacher/courses/faq', TeacherFAQHandler),
     ('/teacher/courses/delete', CourseDeletionHandler),
     ('/teacher/courses/faq/delete', FAQDeletionHandler),
+<<<<<<< HEAD
     ('/questions', MessageHandler),
     ('/teacher/courses/students', SendHandler),
+=======
+    ('/teacher/courses/students', AddHandler),
+    ('/compose', NewQuestionHandler),
+>>>>>>> 07c659cc5b9d04acb61541c8aab1ea4cb37e3efa
 ], debug=True)

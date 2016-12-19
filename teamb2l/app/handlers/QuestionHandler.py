@@ -1,18 +1,7 @@
-import webapp2
-import jinja2
-import os
+from Handler import Handler
+from google.appengine.ext import ndb
 
-from app.classes.StudentAcct import StudentAcct
 
-import main
-
-JINJA_ENVIRONMENT = jinja2.Environment(
-loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), '..', 'Mocs')),
-extensions=['jinja2.ext.autoescape'],
-autoescape=True)
-
-class QuestionHandler(webapp2.RequestHandler):
+class QuestionHandler(Handler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/Student Compose.html')
-        self.response.write(template.render())
-        
+        Handler.render("question.html")

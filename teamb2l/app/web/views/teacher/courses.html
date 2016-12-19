@@ -8,12 +8,15 @@
 
 {% block content %}
 	<div id="taskbar">
-        <header>Course Listing for {{user}}</header>
-            <a href="/login">
+        <header>Welcome {{user}}</header>
+            <a href="/logout">
                 <input id="login" type="button" value="Log Out"/>
             </a>     
         <a href="/Inbox Teacher.html">
             <input id="mail" type="button" value="Mail"/>
+        </a>
+        <a href="/teachers">
+            <input id="admin" type="button" value="Admin">
         </a>
     </div>
     <div class="col-md-10 col-md-offset-1 classesSection">
