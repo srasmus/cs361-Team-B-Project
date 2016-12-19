@@ -38,9 +38,6 @@ class SendHandler(webapp2.RequestHandler):
                 student = User.query(User.email == name).fetch()
                 student =student[0]
                 course.enroll(student.key)
-                student_key = User.query(User.email == name).fetch()
-                student_key = student_key[0].key
-                course.enroll(student_key)
                 self.redirect('/teacher/courses/faq?course_key=' + course_key.urlsafe())
             else:
                 email = name

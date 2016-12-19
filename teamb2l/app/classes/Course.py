@@ -14,8 +14,6 @@ class Course(ndb.Model):
         students = []
         for query in student_query:
             student_key = query.student
-            students.append(student_key)
-            # student_key = query.student
             students.append(query.student)
         return students
 
