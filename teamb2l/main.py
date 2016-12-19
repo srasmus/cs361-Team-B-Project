@@ -31,12 +31,12 @@ from app.handlers.QuestionsHandler import QuestionsHandler
 
 
 app = webapp2.WSGIApplication([
-    ('/Student FAQs.html', StudentHandler),
     ('/test', TestHandler),
     ('/', MainHandler),
     ('/teachers', AdminHandler),
     ('/login', LoginHandler),
     ('/logout', LogoutHandler),
+    ('/student/courses', StudentHandler),
     ('/student/faq', StudentFAQHandler),
     ('/register', RegisterHandler),
     ('/teacher/courses', TeacherCourseHandler),

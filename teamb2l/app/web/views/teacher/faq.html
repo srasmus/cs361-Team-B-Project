@@ -61,22 +61,21 @@
 
     <div class="row col-md-10 col-md-offset-1 studentSection">
         <h1>
-            Students Enrolled 
+            Students Enrolled <br><select class="students">
+         {% for list in list %}
+          <option id="classes" value="{{ list.get().email}}">{{ list.get().email}}</option>
+         {%endfor%}
+         </select>
             <form class="faqForm col-md-8 col-md-offset-2" action = "/teacher/courses/students" method="POST">
                <input type="hidden" value={{ course.key.urlsafe() }} name="course_key"/>
                 <div class="faqHeader">
                 </div>
                 <div class="faqBody">
-                    <textarea type="textarea" name="names"  class="form-control answerField"></textarea>
+                    <textarea type="textarea" name="names" placeholder="Input email sperated with comma and no space for list more than one" class="form-control answerField"></textarea>
                     <input type="submit" value="Add Students" class="formButton btn"/>
                 </div>
             </form>
         </h1>
         <br/>
-          <select>
-         {% for list in list %}
-          <option id="classes" value="{{ list.get().email}}">{{ list.get().email}}</option>
-         {%endfor%}
-         </select>  
-    </div>
+
 {% endblock %}

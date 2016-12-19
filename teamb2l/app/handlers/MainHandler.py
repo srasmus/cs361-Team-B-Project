@@ -23,18 +23,8 @@ class MainHandler(webapp2.RequestHandler):
 
             if(user != None):
                 if user.permission == 0:
-                    courses = User.getCoursesStudent(user)
-                    data = {"courses":courses, "user":user}
-                    template = JINJA_ENVIRONMENT.get_template('/sPage.html')
-                    self.response.write(template.render(data))
+                    self.redirect('/student/courses')
                 else:
                     self.redirect('/teacher/courses')
-                #else:
-                #    students = User.query(User.permission == 0).fetch()
-                #    courses = Course.query().fetch()
-                #    data = {"courses":courses, "students":students, "question":question, "teachers":[]}
-                #    template = JINJA_ENVIRONMENT.get_template('/admin/teachers.html')
-                #    self.response.write(template.render(data))
-                
             else:
                 self.redirect('/login')

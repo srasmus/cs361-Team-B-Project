@@ -5,7 +5,7 @@
         <title>CLASSES</title>
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" type="text/css" href="styles/Inbox.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/Inbox.css"/>
     </head>
     <body>
         <div id="taskbar">
@@ -15,17 +15,17 @@
             </a>
           
         </div>
-        <h1 id="inboxHeading">CLASSES</h1>
+          <h1 id="inboxHeading">CLASSES</h1>
             <div id="inbox">
          		<form action="/student/faq" method="get">
                     <div id="classes">
-                    <select name="classes">
-                    {% for i in courses %}
-                    <option id="classes" value= {{i.course.urlsafe()}}>{{ i.course.get().name }}</option>
-                    {%endfor%}
-                    </select>
+                        <select name="classes">
+                        {% for course in courses %}
+                            <option id="classes" value="{{ course.key.urlsafe() }}">{{ course.name }}</option>
+                        {%endfor%}
+                        </select>
                     </div>
-                    <input type="submit" id="register">
+                    <input type="submit" id="register" value="View FAQ"/>
                 </form>
             </div>
     </body>

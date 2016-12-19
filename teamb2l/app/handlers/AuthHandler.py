@@ -58,7 +58,6 @@ class RegisterHandler(webapp2.RequestHandler):
                         <meta http-equiv="refresh" content="2;url=/">"""
             self.response.write(postMe)
 
-
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/auth/login.html')
