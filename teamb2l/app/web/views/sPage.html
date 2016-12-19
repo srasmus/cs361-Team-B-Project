@@ -5,23 +5,23 @@
         <title>CLASSES</title>
         <link rel="stylesheet" type="text/css"
               href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/base.css"/>
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/Inbox.css"/>
     </head>
     <body>
         <div id="taskbar">
             <header>Welcome {{user.email}} </header>
-            <form action="/logout">
-                <input id="log" type="button" value="Log out"/>
-            </form>
+            <a href="/login">
+                <input id="login" type="button" value="Log out"/>
+            </a>
           
         </div>
-          <h1 class="inboxHeading">CLASSES</h1>
-            <div class="inbox">
+          <h1 id="inboxHeading">CLASSES</h1>
+            <div id="inbox">
          		<form action="/student/faq" method="get">
-                    <div class="classes">
+                    <div id="classes">
                         <select name="classes">
                         {% for course in courses %}
-                            <option class="classes" value="{{ course.key.urlsafe() }}">{{ course.name }}</option>
+                            <option id="classes" value="{{ course.key.urlsafe() }}">{{ course.name }}</option>
                         {%endfor%}
                         </select>
                     </div>
