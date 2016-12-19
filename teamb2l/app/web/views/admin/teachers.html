@@ -87,16 +87,15 @@
     </tr>
     </table>
     <h1 id="inboxHeading">Teachers</h1>
-    <div id="inbox">
-    	<div class="row">
+    <div id="teacherBox">
 	    	<form action="/teachers" method="post" class="col-md-8 col-md-offset-2">
 	    			<div class="form-group">
                     <select name="deleteUser">
                     {% for i in teachers %}
                     <option id="classes" value="{{ i.email }}">{{ i.name }}</option>
                     {%endfor%}
-	    			</div>
 		    		<input type="submit" id="register" value="Delete Teacher"/>
+	    			</div>
 	    	<br></form>
 	    <form method="post">
 	    	<div class="form-group">
