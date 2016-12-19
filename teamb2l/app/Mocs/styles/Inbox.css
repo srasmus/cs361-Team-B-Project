@@ -64,7 +64,15 @@ header {
     border-radius: 12px;
     color: rgb(38, 38, 38);
 }
-
+#teacherBox {
+    margin: 20px;
+    padding: 40px 23px 15px;
+    background-color: rgb(235, 235, 235);
+    border: 2px solid rgb(19, 19, 19);
+    border-radius: 12px;
+    color: rgb(38, 38, 38);
+    max-width: 600px;
+}
 #inboxHeading {
     margin: 100px 0px 0px;
     font-family: "Montserrat";
