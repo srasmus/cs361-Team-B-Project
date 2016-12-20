@@ -20,7 +20,10 @@ class InboxHandler(Handler):
             else:
                 courses = user.getCoursesTeacher()
             courses.sort()
-            self.render("/question/question_base.html", user=user, courses=courses)
+            courseQuestion = {}
+            for course in courses:
+                courseQuestion[course] = Question.query(Question.course == course)
+            self.render("/question/question_base.html", user=user, courses=courses, courseQuestion=courseQuestion)
 
     def get(self):
         self.render_page()
@@ -28,6 +31,7 @@ class InboxHandler(Handler):
 
 class NewQuestionHandler(Handler):
     def render_page(self, subject="", content="", courses="", error=""):
+        logging.info(self.request.cookies.get('user'))
         user_key = self.request.cookies.get('user')
         if user_key is None:
             self.redirect('/login')
@@ -38,7 +42,7 @@ class NewQuestionHandler(Handler):
                 self.redirect('/')
             else:
                 courses = user.getCoursesStudent()
-
+        courses.sort()
         self.render("/question/new_question.html", user=user, subject=subject, content=content, error=error, courses=courses)
 
     def get(self):
@@ -66,5 +70,29 @@ class NewQuestionHandler(Handler):
                     question = Question(student=user, course=course, subject=subject, content=content)
                     question.put()
 
-                    self.redirect('/question/' + question.get())
+                    self.redirect('/question/%s' % str(question.key().id()))
 
+class QuestionHandler(Handler):
+    def render_page(self, question_id):
+        logging.info(self.request.cookies.get('user'))
+        user_key = self.request.cookies.get('user')
+        if user_key is None:
+            self.redirect('/login')
+        else:
+            user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
+            user = user_key.get()
+            if user.permission == 0:
+                courses = user.getCoursesStudent()
+            else:
+                courses = user.getCoursesTeacher()
+            courses.sort()
+            key = ndb.Key.from_path('Question', int(question_id))
+            question = ndb.get(key)
+
+            if not question:
+                self.redirect('/')
+            else:
+                self.render("/question/question.html", question=question, user=user)
+
+    def get(self, question_id):
+        self.render_page(question_id=question_id)

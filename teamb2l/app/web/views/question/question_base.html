@@ -30,9 +30,9 @@
             {% endif %}
             {% for course in courses %}
             <h2 class="subHeading">{{ course }}</h2>
-            {% set questions = Questions.query(Questions.course == course) %}
-                {% for question in questions %}
-                <form action="/question/{{ question.key() }}">
+
+                {% for question in courseQuestion[course] %}
+                    <form action="/question/{{ question.key() }}">
                     <input class="mail" type="button" value="{{ question.subject }}"/>
                 </form>
                 {% endfor %}
