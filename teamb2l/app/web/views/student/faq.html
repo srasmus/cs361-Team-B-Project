@@ -21,7 +21,8 @@
         <button id="login" type="submit" value="Log out">Log out
         </button>
     </form>
-    <a href="/Inbox Student.html">
+    <a href="/question/inbox">
+        <input type="hidden" name="course" value="{{ course.key.urlsafe() }}"/>
         <input id="mail" type="button" value="Mail"/>
     </a>
 </div>

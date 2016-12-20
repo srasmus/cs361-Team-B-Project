@@ -4,7 +4,6 @@ from google.appengine.ext import ndb
 
 from Handler import Handler
 from ..classes.Question import Question
-from ..classes.Course import Course
 
 
 class InboxHandler(Handler):
@@ -40,8 +39,8 @@ class NewQuestionHandler(Handler):
                 self.redirect('/')
             else:
                 courses = user.getCoursesStudent()
-            courses.sort()
-            self.render("/question/new_question.html", user=user, subject=subject, content=content, error=error, courses=courses)
+        courses.sort()
+        self.render("/question/new_question.html", user=user, subject=subject, content=content, error=error, courses=courses)
 
     def get(self):
         self.render_page()
@@ -52,7 +51,7 @@ class NewQuestionHandler(Handler):
         courses = self.request.get("courses")
         course = self.request.get("course")
 
-        if subject == "" or content == "" or course == "":
+        if not subject or not content or not course:
             error = "Required field is blank"
             self.render_page(subject, content, courses, error)
         else:
@@ -65,10 +64,11 @@ class NewQuestionHandler(Handler):
                 if user.permission != 0:
                     self.redirect('/')
                 else:
-                    question = Question(student=user_key, course=ndb.Key(urlsafe=course), subject=subject, content=content)
+                    course = ndb.Key(urlsafe=course)
+                    question = Question(student=user_key, course=course, subject=subject, content=content)
                     question.put()
 
-                    self.redirect('/question/%s' % ndb.Key(urlsafe=question))
+                    self.redirect('/question/inbox')
 
 class QuestionHandler(Handler):
     def render_page(self, question_id):
@@ -84,22 +84,14 @@ class QuestionHandler(Handler):
             else:
                 courses = user.getCoursesTeacher()
             courses.sort()
-            course = Course.query()
+            course = courses.query()
             key = ndb.Key.from_path('Question', int(question_id))
             question = ndb.get(key)
 
             if not question:
                 self.redirect('/')
             else:
-                self.render("/question/question.html", course=course, courses=courses, question=question, user=user)
+                self.render("/question/question.html", courses=courses, question=question, user=user)
 
     def get(self, question_id):
         self.render_page(question_id=question_id)
-
-    def post(self):
-        answer = self.request.get("answer")
-        question = self.request.get("question")
-
-        question.answer = answer
-
-        self.redirect('question/inbox')

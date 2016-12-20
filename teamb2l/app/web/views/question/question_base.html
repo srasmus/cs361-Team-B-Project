@@ -32,9 +32,10 @@
             <h2 class="subHeading">{{ course.name }}</h2>
 
                 {% for question in course.getQuestions() %}
-                    <form action="/question/{{ question.key() }}">
-                    <input class="mail" type="button" value="{{ question.subject }}"/>
-                </form>
+                    <form action="/question/view">
+                        <input type="hidden" name="question" value="{{ question.key.urlsafe() }}"
+                        <input class="mail" type="button" value="{{ question.subject }}"/>
+                    </form>
                 {% endfor %}
             {% endfor %}
         </div>

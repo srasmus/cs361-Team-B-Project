@@ -20,11 +20,8 @@ class Course(ndb.Model):
         return students
 
     def getQuestions(self):
-        question_query = Question.query(StudentCourse.course == self.key)
-        questions = []
-        for query in question_query:
-            question_key = query.question
-            questions.append(query.question)
+        questions = Question.query(Question.course == self.key).fetch()
+
         return questions
 
     def enroll(self,student_key):
