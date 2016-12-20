@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block head %}
+	<meta charset="utf-8"/>
+    <title>TeamB2L - Courses</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/Inbox.css"/>  
+{% endblock %}
+
+{% block content %}
+	<div id="taskbar">
+        <header>Welcome Guest</header>
+        <a href="/login">
+            <input id="login" type="button" value="Log in"/>
+        </a>
+    </div>
+     <h1 id="inboxHeading">Courses</h1>
+        <div id="inbox">
+     		<form action="/public/faq" method="get">
+                <div id="classes">
+                    <select name="course">
+                    {% for course in courses %}
+                        <option id="classes" value="{{ course.key.urlsafe() }}">{{ course.name }}</option>
+                    {%endfor%}
+                    </select>
+                </div>
+                <input type="submit" id="register" value="View FAQ"/>
+            </form>
+        </div>
+{% endblock %}
