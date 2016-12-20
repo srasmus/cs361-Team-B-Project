@@ -31,7 +31,7 @@ class InboxHandler(webapp2.RequestHandler):
                     course = ndb.Key(urlsafe=course).get()
                     questions = course.getQuestions(user_key)
 
-                template = JINJA_ENVIRONMENT.get_template('/question/question_base.html')
+                template = JINJA_ENVIRONMENT.get_template('/question/student_inbox.html')
 
                 self.response.write(template.render({
                     'courses': courses,
@@ -42,6 +42,40 @@ class InboxHandler(webapp2.RequestHandler):
                 }))
             else:
                 courses = user.getCoursesTeacher()
+                course = self.request.get('course')
+
+                if course != "":
+                    course = ndb.Key(urlsafe=self.request.get('course')).get()
+                    student = self.request.get('student')
+                    if student != "":
+                        student = ndb.Key(urlsafe=self.request.get('student')).get()
+                        questions = course.getQuestions(student.key)
+                        template = JINJA_ENVIRONMENT.get_template('/question/teacher_inbox.html')
+                        self.response.write(template.render({
+                            'courses': courses,
+                            'course_selected': course,
+                            'questions': questions,
+                            'questions_count': len(questions),
+                            'user': user,
+                            'student': student
+                        }))
+                    else:
+                        students = course.getStudents()
+                        template = JINJA_ENVIRONMENT.get_template('/question/teacher_inbox_select.html')
+                        self.response.write(template.render({
+                            'courses': courses,
+                            'course_selected': course,
+                            'students': students,
+                            'user': user
+                        }))
+                else:
+                    template = JINJA_ENVIRONMENT.get_template('/question/teacher_inbox_select.html')
+                    self.response.write(template.render({
+                        'courses': courses,
+                        'course_selected': course,
+                        'students': [],
+                        'user': user
+                    }))
             courses.sort()
 
 
@@ -51,7 +85,7 @@ class NewQuestionHandler(webapp2.RequestHandler):
     def post(self):
         content = self.request.get("content")
         course = ndb.Key(urlsafe=self.request.get("course"))
-        sender = ndb.Key(urlsafe=self.request.get("sender"))
+        student = ndb.Key(urlsafe=self.request.get("student"))
 
         if not content:
             self.redirect('/question/inbox?course=' + course)
@@ -62,13 +96,13 @@ class NewQuestionHandler(webapp2.RequestHandler):
             else:
                 user_key = ndb.Key(urlsafe=self.request.cookies.get('user'))
                 user = user_key.get()
-                if user.permission != 0:
-                    self.redirect('/')
-                else:
-                    question = Question(student=user_key, course=course, sender=user_key, content=content)
-                    question.put()
+                question = Question(student=student, course=course, sender=user_key, content=content)
+                question.put()
 
+                if(user.permission == 0):
                     self.redirect('/question/inbox?course=' + course.urlsafe())
+                else:
+                    self.redirect('/question/inbox?course=' + course.urlsafe() + "&student=" + student.urlsafe())
 
 class QuestionHandler(Handler):
     def render_page(self, question_id):

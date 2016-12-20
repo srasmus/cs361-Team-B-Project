@@ -23,13 +23,11 @@
         </div>
         <div id="inbox">
             <h1 id="inboxHeading">Inbox</h1>
-            {% if user.permission == 0 %}
-                <form action="/question/new" method="get">
-                    <input class="mail" id="compose" type="submit" value="Ask a question"/>
-                </form>
-            {% endif %}
             {% for course in courses %}
-                <a class="classSelect subHeading" href="/question/inbox?course={{ course.key.urlsafe() }}">{{ course.name }}</a>
+                <form action="/question/inbox" method="get">
+                    <input type="hidden" name="course" value="{{ course.key.urlsafe() }}"/>
+                    <input class="mail" id="compose" type="submit" value="{{ course.name }}"/>
+                </form>
             {% endfor %}
         </div>
         {% if questions_count > 0 %}
@@ -52,8 +50,8 @@
         {% if course_selected != "" %}
             <div id="reply">
                 <form method="post" action="/question/new">
-                    <input type="hidden" name="sender" value="{{ user.key.urlsafe() }}"/>
                     <input type="hidden" name="course" value="{{ course_selected.key.urlsafe() }}"/>
+                    <input type="hidden" name="student" value="{{ user.key.urlsafe() }}"/>
                     <div id="responseBox">
                         <input id="send" type="submit" value="Send"/>
                         <textarea name="content" id="response" placeholder="Send Message"></textarea>

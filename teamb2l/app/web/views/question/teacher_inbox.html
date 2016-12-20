@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Question</title>
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Droid+Sans">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" type="text/css"
+              href="https://fonts.googleapis.com/css?family=Open+Sans">
+        <link rel="stylesheet" type="text/css" href="/assets/stylesheets/question.css"/>
+    </head>
+    <body>
+        <div id="taskbar">
+            <header>Questions {% if course_selected != "" %}for {{ course_selected.name }} {% endif %}</header>
+            <form action="/logout" method="get" id="loginForm">
+                <input id="login" type="submit" value="Log out"/>
+            </form>
+            <form action="/" method="get">
+                <input id="faqs" type="submit" value="Home"/>
+            </form>
+        </div>
+        <div id="inbox">
+            <h1 id="inboxHeading">Inbox</h1>
+            {% for course in courses %}
+                <form action="/question/inbox" method="get">
+                    <input type="hidden" name="course" value="{{ course.key.urlsafe() }}"/>
+                    <input class="mail" id="compose" type="submit" value="{{ course.name }}"/>
+                </form>
+            {% endfor %}
+        </div>
+        {% if questions_count > 0 %}
+            <div id="message">
+                <div id="question">
+                    {% for question in questions %}
+                        {% if question.sender != None and question.sender.get() == user %}
+                            <div class="personalMessage">
+                                {{ question.content }}
+                            </div>
+                        {% else %}
+                            <div class="otherMessage">
+                                {{ question.content }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if course_selected != "" %}
+            <div id="reply">
+                <form method="post" action="/question/new">
+                    <input type="hidden" name="course" value="{{ course_selected.key.urlsafe() }}"/>
+                    <input type="hidden" name="student" value="{{ student.key.urlsafe() }}"/>
+                    <div id="responseBox">
+                        <input id="send" type="submit" value="Send"/>
+                        <textarea name="content" id="response" placeholder="Send Message"></textarea>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    </body>
+</html>

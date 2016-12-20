@@ -15,7 +15,7 @@
             <button id="login" type="submit" value="Log out">Log out
             </button>
         </form>            
-        <a href="Inbox%20Teacher.html">
+        <a href="/question/inbox">
             <input id="mail" type="button" value="Mail"/>
         </a>
     </div>
@@ -63,7 +63,7 @@
         <h1>
             Students Enrolled <br><select class="students">
          {% for list in list %}
-          <option id="classes" value="{{ list.get().email}}">{{ list.get().email}}</option>
+          <option id="classes" value="{{ list.email}}">{{ list.email}}</option>
          {%endfor%}
          </select>
             <form class="faqForm col-md-8 col-md-offset-2" action = "/teacher/courses/students" method="POST">

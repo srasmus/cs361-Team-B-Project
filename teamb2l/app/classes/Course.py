@@ -16,7 +16,7 @@ class Course(ndb.Model):
         students = []
         for query in student_query:
             student_key = query.student
-            students.append(query.student)
+            students.append(student_key.get())
         return students
 
     def getQuestions(self, student_key):
