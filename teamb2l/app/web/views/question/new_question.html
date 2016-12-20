@@ -4,8 +4,8 @@
 <div id="reply">
     <form method="post">
         <div id="replySubjectBar">
-            <input id="replySubject" type="text" value="{{ subject }}" placeholder="Subject">
-        <select id="dropdown">
+            <input id="replySubject" type="text" name="subject" value="{{ subject }}" placeholder="Subject">
+        <select name="course" id="dropdown">
             {% for course in courses %}
                 <option value="{{ course.key }}">{{ course.name }}</option>
             {% endfor %}
@@ -13,7 +13,7 @@
         <input id="send" type="submit" value="Send"/>
         </div>
         <div id="responseBox">
-            <textarea id="response">{{content}}</textarea>
+            <textarea name="content" id="response">{{content}}</textarea>
         </div>
         <div class="error">{{error}}</div>
     </form>

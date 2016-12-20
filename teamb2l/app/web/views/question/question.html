@@ -16,8 +16,9 @@
                     <input id="send" type="submit" value="Send"/>
                 </div>
                 <div id="responseBox">
-                    <textarea id="response" value=""></textarea>
+                    <textarea id="response" name="answer"></textarea>
                 </div>
+                <input type="hidden" name="question" value="{{ question }}">
             </div>
         </form>
     {% endif %}

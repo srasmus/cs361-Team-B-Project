@@ -65,7 +65,7 @@ class NewQuestionHandler(Handler):
                 if user.permission != 0:
                     self.redirect('/')
                 else:
-                    question = Question(student=user, course=course, subject=subject, content=content)
+                    question = Question(student=user_key, course=ndb.Key(urlsafe=course), subject=subject, content=content)
                     question.put()
 
                     self.redirect('/question/%s' % str(question.key().id()))
@@ -95,3 +95,11 @@ class QuestionHandler(Handler):
 
     def get(self, question_id):
         self.render_page(question_id=question_id)
+
+    def post(self):
+        answer = self.request.get("answer")
+        question = self.request.get("question")
+
+        question.answer = answer
+
+        self.redirect('question/inbox')
