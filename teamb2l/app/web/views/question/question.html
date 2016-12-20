@@ -9,14 +9,16 @@
             {{ question.content }}
         </div>
     </div>
-    <form action="post">
-        <div id="reply">
-            <div id="replySubjectBar">
-                <input id="send" type="submit" value="Send"/>
+    {% if user.permission != 1 %}
+        <form action="post">
+            <div id="reply">
+                <div id="replySubjectBar">
+                    <input id="send" type="submit" value="Send"/>
+                </div>
+                <div id="responseBox">
+                    <textarea id="response" value=""></textarea>
+                </div>
             </div>
-            <div id="responseBox">
-                <textarea id="response" value=""></textarea>
-            </div>
-        </div>
-    </form>
+        </form>
+    {% endif %}
 {% endblock %}}
