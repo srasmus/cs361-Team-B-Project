@@ -1,5 +1,6 @@
 from google.appengine.ext import ndb
 from ..classes.StudentCourse import StudentCourse
+from ..classes.Question import Question
 import random
 import logging
 
@@ -16,6 +17,14 @@ class Course(ndb.Model):
             student_key = query.student
             students.append(query.student)
         return students
+
+    def getQuestions(self):
+        question_query = Question.query(StudentCourse.course == self.key)
+        questions = []
+        for query in question_query:
+            question_key = query.question
+            questions.append(query.question)
+        return questions
 
     def enroll(self,student_key):
         pivot = StudentCourse()

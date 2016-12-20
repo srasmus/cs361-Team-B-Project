@@ -31,7 +31,7 @@
             {% for course in courses %}
             <h2 class="subHeading">{{ course }}</h2>
 
-                {% for question in courseQuestion[course] %}
+                {% for question in course.getQuestions() %}
                     <form action="/question/{{ question.key() }}">
                     <input class="mail" type="button" value="{{ question.subject }}"/>
                 </form>
