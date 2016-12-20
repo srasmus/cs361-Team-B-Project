@@ -19,8 +19,8 @@ class Course(ndb.Model):
             students.append(query.student)
         return students
 
-    def getQuestions(self):
-        questions = Question.query(Question.course == self.key).fetch()
+    def getQuestions(self, student_key):
+        questions = Question.query(Question.course == self.key, Question.student == student_key).order(Question.created).fetch()
 
         return questions
 
