@@ -7,7 +7,7 @@
             <input id="replySubject" type="text" name="subject" value="{{ subject }}" placeholder="Subject">
         <select name="course" id="dropdown">
             {% for course in courses %}
-                <option value="{{ course.key }}">{{ course.name }}</option>
+                <option value="{{ course.key.urlsafe() }}">{{ course.name }}</option>
             {% endfor %}
         </select>
         <input id="send" type="submit" value="Send"/>

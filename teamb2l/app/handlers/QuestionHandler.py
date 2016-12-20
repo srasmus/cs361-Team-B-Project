@@ -68,7 +68,7 @@ class NewQuestionHandler(Handler):
                     question = Question(student=user_key, course=ndb.Key(urlsafe=course), subject=subject, content=content)
                     question.put()
 
-                    self.redirect('/question/%s' % str(question.key().id()))
+                    self.redirect('/question/%s' % ndb.Key(urlsafe=question))
 
 class QuestionHandler(Handler):
     def render_page(self, question_id):
