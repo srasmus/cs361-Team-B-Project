@@ -1,6 +1,7 @@
 from google.appengine.ext import ndb
-from ..classes.StudentCourse import StudentCourse
 from ..classes.Question import Question
+from StudentCourse import StudentCourse
+from faq import FAQ
 import random
 import logging
 
@@ -40,3 +41,8 @@ class Course(ndb.Model):
 
     def getTeacher(self):
         return self.teacher.get()
+
+    def getFAQs(self):
+        faqs = FAQ.query(FAQ.course == self.key).fetch()
+
+        return faqs
